@@ -1,0 +1,394 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_b97f5"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ia_sharedoffice365_4cf85"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "[ENV] - STR_Infosec_Approver_Team_Email_Address (ia_ENVSTR_Infosec_Team_Email_Address)": {
+          "defaultValue": " stuart.smith@delta.com;brett.valentine@delta.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ia_ENVSTR_Infosec_Team_Email_Address",
+            "description": "Approver 1 Infosec Team Email Address"
+          }
+        },
+        "[ENV] - STR_CCoE_Approver_Team_Email_Address (ia_ENVSTR_CCoE_Approver_Team_Email_Address)": {
+          "defaultValue": "matthew.penna@delta.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ia_ENVSTR_CCoE_Approver_Team_Email_Address",
+            "description": "CCoE Approval Email"
+          }
+        },
+        "[ENV] - STR_Infrastructure_Approver_Team_Email_Address (ia_ENVSTR_Infrastructure_Approver_Team_Email_Address)": {
+          "defaultValue": "anthony.rollins@delta.com;julie.miller00@delta.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ia_ENVSTR_Infrastructure_Approver_Team_Email_Address",
+            "description": "Infra Approval Email"
+          }
+        },
+        "[ENV] - STR_SharePoint_Site_Address (ia_ENVSTR_SharePoint_Site_Address)": {
+          "defaultValue": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO/",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ia_ENVSTR_SharePoint_Site_Address"
+          }
+        },
+        "[ENV] - STR_SharePoint_List_Name (ia_ENVSTR_SharePoint_List_Name)": {
+          "defaultValue": "Software Technology Request (STR) Review Log",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ia_ENVSTR_SharePoint_List_Name"
+          }
+        },
+        "[ENV] - STR_Architecture_Approver_Team_Email_Address (ia_ENVSTR_Architecture_Approver_Team_Email_Address)": {
+          "defaultValue": "bret.martin@delta.com;kimberly.baima@delta.com",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ia_ENVSTR_Architecture_Approver_Team_Email_Address"
+          }
+        },
+        "[ENV] - STR_DEV_Team_Email_Address (ia_ENVSTR_DEV_Team_Email_Address)": {
+          "defaultValue": "vidit.bhargava@delta.com;joseph.brashear@delta.com;",
+          "type": "String",
+          "metadata": {
+            "schemaName": "ia_ENVSTR_DEV_Team_Email_Address",
+            "description": "Support Team"
+          }
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "ed0dac20-f841-48bc-a694-672e5ddad4a6"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "ApprovalStatus",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "RejectionReason",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "number": {
+                  "title": "ID",
+                  "type": "number",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter a number",
+                  "x-ms-content-hint": "NUMBER"
+                },
+                "text_2": {
+                  "title": "CreatedBy",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": [
+                "text",
+                "text_1",
+                "number",
+                "text_2"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Catch": [
+              "Skipped"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9fd7959c-b5cc-4bbc-9593-a6ea25196163"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "1"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "Response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Compose": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "1b04afba-e9e2-4763-b4aa-66d84163102c"
+          },
+          "type": "Compose",
+          "inputs": "@parameters('[ENV] - STR_Infrastructure_Approver_Team_Email_Address (ia_ENVSTR_Infrastructure_Approver_Team_Email_Address)')"
+        },
+        "Compose_2": {
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "7d976115-b31f-4294-9aba-cdfde6f8685a"
+          },
+          "type": "Compose",
+          "inputs": "@if(contains(outputs('Compose'), triggerBody()['text_2']), triggerBody()['text'], '')"
+        },
+        "Scope": {
+          "actions": {
+            "Get_item": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "82067d65-bff7-44a3-8efb-4cff5c37c459"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                  "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                  "id": "@triggerBody()['number']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Update_item": {
+              "runAfter": {
+                "Get_item": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6137db31-282d-49d4-bed3-dd0c600b9dfb"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "PatchItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                  "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                  "id": "@triggerBody()['number']",
+                  "item/IR_x0020_Approver/Value": "@if(contains(parameters('[ENV] - STR_Infrastructure_Approver_Team_Email_Address (ia_ENVSTR_Infrastructure_Approver_Team_Email_Address)'), triggerBody()['text_2']), triggerBody()['text'], outputs('Get_item')?['body/IR_x0020_Approver/Value'])",
+                  "item/Infosec_x0020_Approver/Value": "@if(contains(parameters('[ENV] - STR_Infosec_Approver_Team_Email_Address (ia_ENVSTR_Infosec_Team_Email_Address)'), triggerBody()['text_2']), triggerBody()['text'], outputs('Get_item')?['body/Infosec_x0020_Approver/Value'])",
+                  "item/Arch_x0020_Gov_x0020_Approver/Value": "@if(\n    contains(\n        parameters('[ENV] - STR_Architecture_Approver_Team_Email_Address (ia_ENVSTR_Architecture_Approver_Team_Email_Address)'),\n        triggerBody()['text_2']\n    ),\n    triggerBody()['text'],\n    outputs('Get_item')?['body/Governance_Approval/Value']\n)",
+                  "item/FinOps_x0020_Approver/Value": "@if(contains(parameters('[ENV] - STR_CCoE_Approver_Team_Email_Address (ia_ENVSTR_CCoE_Approver_Team_Email_Address)'), triggerBody()['text_2']), triggerBody()['text'], outputs('Get_item')?['body/FinOps_x0020_Approver/Value'])"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Get_item_2": {
+              "runAfter": {
+                "Update_item": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "397961c5-402b-4f2e-a100-a605e54f87f1"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "@parameters('[ENV] - STR_SharePoint_Site_Address (ia_ENVSTR_SharePoint_Site_Address)')",
+                  "table": "@parameters('[ENV] - STR_SharePoint_List_Name (ia_ENVSTR_SharePoint_List_Name)')",
+                  "id": "@triggerBody()['number']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Update_item_2": {
+              "runAfter": {
+                "Compose_4": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "5b1d0a7f-140c-412d-8848-e9a84c47cff6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "PatchItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "@parameters('[ENV] - STR_SharePoint_Site_Address (ia_ENVSTR_SharePoint_Site_Address)')",
+                  "table": "@parameters('[ENV] - STR_SharePoint_List_Name (ia_ENVSTR_SharePoint_List_Name)')",
+                  "id": "@triggerBody()['number']",
+                  "item/STR_x0020_Approved/Value": "@if(\r\n   or(\r\n       equals(outputs('Get_item_2')?['body/IR_x0020_Approver/Value'], 'Rejected'),\r\n       equals(body('Get_item_2')?['Infosec_x0020_Approver/Value'], 'Rejected'),\r\n       equals(outputs('Get_item_2')?['body/Arch_x0020_Gov_x0020_Approver/Value'], 'Rejected'),\r\n       equals(outputs('Get_item_2')?['body/FinOps_x0020_Approver/Value'], 'Rejected')\r\n   ),\r\n   'Rejected',\r\n   if(\r\n       and(\r\n           equals(outputs('Get_item_2')?['body/IR_x0020_Approver/Value'], 'Approved'),\r\n           equals(outputs('Get_item_2')?['body/Infosec_x0020_Approver/Value'], 'Approved'),\r\n           equals(outputs('Get_item_2')?['body/Arch_x0020_Gov_x0020_Approver/Value'], 'Approved'),\r\n           or(\r\n               equals(outputs('Get_item_2')?['body/FinOps_x0020_Approver/Value'], 'Approved'),\r\n               equals(outputs('Get_item_2')?['body/FinOps_x0020_Approver/Value'], 'N/A')\r\n           )\r\n       ),\r\n       'Approved',\r\n       Outputs('Update_item')?['body/STR_x0020_Approved/Value']\r\n   )\r\n)",
+                  "item/Data_x0020_Approved": "@formatDateTime(utcNow(), 'MM/dd/yyyy hh:mm tt')\n",
+                  "item/RejectionReason": "@triggerBody()['text_1']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Compose_3": {
+              "runAfter": {
+                "Get_item_2": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "a90cabcf-9ff9-4bf6-a4a4-41e6f67323bf"
+              },
+              "type": "Compose",
+              "inputs": "@if(\r\n   or(\r\n       equals(body('Get_item_2')?['IR_x0020_Approver/Value'], 'Rejected'),\r\n       equals(body('Get_item_2')?['Infosec_x0020_Approver/Value'], 'Rejected'),\r\n       equals(body('Get_item_2')?['ArchGov_x0020_Approver/Value'], 'Rejected'),\r\n       equals(body('Get_item_2')?['CCOE_x0020_Approver/Value'], 'Rejected')\r\n   ),\r\n   'Rejected',\r\n   if(\r\n       and(\r\n           equals(body('Get_item_2')?['IR_x0020_Approver/Value'], 'Approved'),\r\n           equals(body('Get_item_2')?['Infosec_x0020_Approver/Value'], 'Approved'),\r\n           equals(body('Get_item_2')?['ArchGov_x0020_Approver/Value'], 'Approved'),\r\n           or(\r\n               equals(body('Get_item_2')?['CCOE_x0020_Approver/Value'], 'Approved'),\r\n               equals(body('Get_item_2')?['CCOE_x0020_Approver/Value'], 'N/A')\r\n           )\r\n       ),\r\n       'Approved',\r\n       Outputs('Update_item')?['body/STR_x0020_Approved/Value']\r\n   )\r\n)"
+            },
+            "Compose_4": {
+              "runAfter": {
+                "Compose_3": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "c421134a-0133-49d2-916c-b6f7796a7625"
+              },
+              "type": "Compose",
+              "inputs": "@if(\r\n   or(\r\n       equals(outputs('Get_item_2')?['body/IR_x0020_Approver/Value'], 'Rejected'),\r\n       equals(body('Get_item_2')?['Infosec_x0020_Approver/Value'], 'Rejected'),\r\n       equals(outputs('Get_item_2')?['body/Arch_x0020_Gov_x0020_Approver/Value'], 'Rejected'),\r\n       equals(outputs('Get_item_2')?['body/FinOps_x0020_Approver/Value'], 'Rejected')\r\n   ),\r\n   'Rejected',\r\n   if(\r\n       and(\r\n           equals(outputs('Get_item_2')?['body/IR_x0020_Approver/Value'], 'Approved'),\r\n           equals(outputs('Get_item_2')?['body/Infosec_x0020_Approver/Value'], 'Approved'),\r\n           equals(outputs('Get_item_2')?['body/Arch_x0020_Gov_x0020_Approver/Value'], 'Approved'),\r\n           or(\r\n               equals(outputs('Get_item_2')?['body/FinOps_x0020_Approver/Value'], 'Approved'),\r\n               equals(outputs('Get_item_2')?['body/FinOps_x0020_Approver/Value'], 'N/A')\r\n           )\r\n       ),\r\n       'Approved',\r\n       Outputs('Update_item')?['body/STR_x0020_Approved/Value']\r\n   )\r\n)"
+            }
+          },
+          "runAfter": {
+            "Compose_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6c911b2b-52c8-4073-a00e-707a7ec9d590"
+          },
+          "type": "Scope"
+        },
+        "Catch": {
+          "actions": {
+            "Send_an_error_email_with_Action_Level_Information": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1e69b3c2-8ed5-4b64-8130-bc0dcc1f9a7f"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365_1",
+                  "operationId": "SendEmailV2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                },
+                "parameters": {
+                  "emailMessage/To": "@parameters('[ENV] - STR_DEV_Team_Email_Address (ia_ENVSTR_DEV_Team_Email_Address)')",
+                  "emailMessage/Subject": "STR New Product Request Process Flow has Failed | @{formatDateTime(utcNow(), 'dd-MM-yyyy HH:mm:ss')}",
+                  "emailMessage/Body": "<p>Hi Team,<br>\n<br>\nPower Automate <strong>@{workflow().tags.flowDisplayName}</strong> flow has been Failed! Please find below the flow details and the error message along with failed action which caused the error.\n<br>\n\n<style>\ntable,td,th {\n border: 1px solid #ddd;\n text-align:left;\n}\n\ntable{\nboader-collapse:collapse;\nwidth:100%\n}\n\nth,td{\n padding: 15px:\n}\n\n</style>\n<p>\n</p>\n<p>\n<span style=\"color: rgb(209,72,65)\"><strong>Flow Link: </strong></span><a href=@{concat('https://make.powerautomate.com/environments/', workflow()?['tags']['environmentName'], '/flows/', workflow()?['name'], '/runs/', workflow()?['run']['name'])}> Open the flow Run to review</a></span>\n<br>\n<br>\n<span style=\"font-size: 14px\"><em>Kindly do not reply to this email as it is not being monitored.</em></span><span style=\"font-size: 14px\"><br>\n</span>\n<br>\nRegards,\n<br>\nSTR Document BOT\n</p>\n",
+                  "emailMessage/Importance": "High"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Respond_to_a_Power_App_or_flow_2": {
+              "runAfter": {
+                "Send_an_error_email_with_Action_Level_Information": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "9fd7959c-b5cc-4bbc-9593-a6ea25196163"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "response": "1"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "title": "Response",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Scope": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "5d97c65e-821a-4bb8-acd3-a6bc6ddf8470"
+          },
+          "type": "Scope"
+        }
+      },
+      "outputs": {}
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

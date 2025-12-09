@@ -1,0 +1,126 @@
+<ImportExportXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25104.169" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25104.00169">
+  <Entities></Entities>
+  <Roles></Roles>
+  <Workflows>
+    <Workflow WorkflowId="{08be9ef6-a569-f011-bec2-002248294a26}" Name="Request_Update">
+      <JsonFileName>/Workflows/Request_Update-08BE9EF6-A569-F011-BEC2-002248294A26.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <IsCustomizable>1</IsCustomizable>
+      <BusinessProcessType>0</BusinessProcessType>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <ModernFlowType>0</ModernFlowType>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="Request_Update" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4}" Name="STR_SubmitToSharepoint">
+      <JsonFileName>/Workflows/STR_SubmitToSharepoint-CE5D7A99-3CB3-EF11-B8E8-7C1E520D2AE4.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <ModernFlowType>0</ModernFlowType>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="STR_SubmitToSharepoint" />
+      </LocalizedNames>
+    </Workflow>
+    <Workflow WorkflowId="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" Name="STR_ApproveRequest">
+      <JsonFileName>/Workflows/STR_ApproveRequest-98203513-AEBE-EF11-B8E8-7C1E520D2AE4.json</JsonFileName>
+      <Type>1</Type>
+      <Subprocess>0</Subprocess>
+      <Category>5</Category>
+      <Mode>0</Mode>
+      <Scope>4</Scope>
+      <OnDemand>0</OnDemand>
+      <TriggerOnCreate>0</TriggerOnCreate>
+      <TriggerOnDelete>0</TriggerOnDelete>
+      <AsyncAutodelete>0</AsyncAutodelete>
+      <SyncWorkflowLogOnFailure>0</SyncWorkflowLogOnFailure>
+      <StateCode>1</StateCode>
+      <StatusCode>2</StatusCode>
+      <RunAs>1</RunAs>
+      <IsTransacted>1</IsTransacted>
+      <IntroducedVersion>1.0.0.0</IntroducedVersion>
+      <IsCustomProcessingStepAllowedForOtherPublishers>1</IsCustomProcessingStepAllowedForOtherPublishers>
+      <ModernFlowType>0</ModernFlowType>
+      <PrimaryEntity>none</PrimaryEntity>
+      <LocalizedNames>
+        <LocalizedName languagecode="1033" description="STR_ApproveRequest" />
+      </LocalizedNames>
+    </Workflow>
+  </Workflows>
+  <FieldSecurityProfiles></FieldSecurityProfiles>
+  <Templates />
+  <EntityMaps />
+  <EntityRelationships />
+  <OrganizationSettings />
+  <optionsets />
+  <CustomControls />
+  <EntityDataProviders />
+  <CanvasApps>
+    <CanvasApp>
+      <Name>new_strintakeapp_5226d</Name>
+      <AppVersion>2025-11-19T19:28:48Z</AppVersion>
+      <Status>Ready</Status>
+      <CreatedByClientVersion>3.25111.6.0</CreatedByClientVersion>
+      <MinClientVersion>3.25111.6.0</MinClientVersion>
+      <Tags>{"primaryDeviceWidth":"2843","primaryDeviceHeight":"1369","supportsPortrait":"true","supportsLandscape":"true","primaryFormFactor":"Tablet","showStatusBar":"false","publisherVersion":"3.25111.6","minimumRequiredApiVersion":"2.2.0","hasComponent":"false","hasUnlockedComponent":"false","isUnifiedRootApp":"false","sienaVersion":"20251119T172114Z-3.25111.6.0","coauthoringEnabled":"true","multipleWritersEnabled":"true","acceptedCoauthoringTerms":"true"}</Tags>
+      <IsCdsUpgraded>0</IsCdsUpgraded>
+      <GalleryItemId xsi:nil="true"></GalleryItemId>
+      <BackgroundColor>rgba(0, 51, 102, 1)</BackgroundColor>
+      <DisplayName>STR-Intake App</DisplayName>
+      <Description>Version 1.0.0.68</Description>
+      <CommitMessage xsi:nil="true"></CommitMessage>
+      <Publisher></Publisher>
+      <AuthorizationReferences>[]</AuthorizationReferences>
+      <ConnectionReferences>{"012c7982-9c81-4509-9ef4-92044067b54c":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png","dataSources":["STR_ApproveRequest"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"33178e86-e707-4a08-9eea-c82c6592b8dc"},"workflowEntityId":{"value":"98203513-aebe-ef11-b8e8-7c1e520d2ae4"},"workflowDisplayName":{"value":"STR_ApproveRequest"}},"parameterHintsV2":{"workflowName":{"value":"33178e86-e707-4a08-9eea-c82c6592b8dc"},"workflowEntityId":{"value":"98203513-aebe-ef11-b8e8-7c1e520d2ae4"},"workflowDisplayName":{"value":"STR_ApproveRequest"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"e3990192-37e7-415c-b6ca-bbdb14a73f94":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png","dataSources":["STR_SubmitToSharepoint"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"dc0646ca-9785-4e5e-b31a-3acca005170a"},"workflowEntityId":{"value":"ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4"},"workflowDisplayName":{"value":"STR_SubmitToSharepoint"}},"parameterHintsV2":{"workflowName":{"value":"dc0646ca-9785-4e5e-b31a-3acca005170a"},"workflowEntityId":{"value":"ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4"},"workflowDisplayName":{"value":"STR_SubmitToSharepoint"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"e6e54a6f-ff12-4b98-8da6-b44af6907012":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png","dataSources":["STR_DOC_New_Product_Request_Notification_v0.1"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"7ba5aa79-9524-4f77-9a68-26097692eda5"},"workflowEntityId":{"value":"265cd31d-f6a7-ef11-b8e8-7c1e5266e221"},"workflowDisplayName":{"value":"STR_DOC_New_Product_Request_Notification_v0.1"}},"parameterHintsV2":{"workflowName":{"value":"7ba5aa79-9524-4f77-9a68-26097692eda5"},"workflowEntityId":{"value":"265cd31d-f6a7-ef11-b8e8-7c1e5266e221"},"workflowDisplayName":{"value":"STR_DOC_New_Product_Request_Notification_v0.1"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]},"afbd59ba-7019-481d-ba86-935c72533bca":{"id":"/providers/microsoft.powerapps/apis/shared_sharepointonline","displayName":"SharePoint","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1769/1.0.1769.4352/sharepointonline/icon.png","dataSources":["Software Technology Request (STR) Review Log"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{"https://deltaairlines.sharepoint.com/sites/DL001597/PDO":{"dataSources":{"Software Technology Request (STR) Review Log":{"tableName":"dcfc03d1-1c02-4870-916d-bf7f5a2f71ba"}}}},"apiTier":"Standard","actions":["providers/PowerPlatform.Governance/Operations/Read","providers/PowerPlatform.Governance/Operations/Write"]},"e108f89d-b175-4d67-8730-0077912beb1a":{"id":"/providers/microsoft.powerapps/apis/shared_office365","displayName":"Office 365 Outlook","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1777/1.0.1777.4410/office365/icon.png","dataSources":["Office365Outlook"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["SendEmailV2"]},"ba79d783-3768-4c0d-aed8-c15062ca3717":{"id":"/providers/microsoft.powerapps/apis/shared_office365users","displayName":"Office 365 Users","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1777/1.0.1777.4410/office365users/icon.png","dataSources":["Office365Users"],"dependencies":[],"dependents":[],"parameterHints":{},"parameterHintsV2":{},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["MyProfile","SearchUser","Manager_V2","Manager","MyProfile_V2"]},"e5c23db7-f374-4964-87bd-9a75b7463676":{"id":"/providers/microsoft.powerapps/apis/shared_logicflows","displayName":"Logic flows","iconUri":"https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/v1.0.1774/1.0.1774.4397/logicflows/icon.png","dataSources":["Request_Update"],"dependencies":[],"dependents":[],"parameterHints":{"workflowName":{"value":"cd9f4d7a-db86-4c05-a217-bedf8e09ef0a"},"workflowEntityId":{"value":"08be9ef6-a569-f011-bec2-002248294a26"},"workflowDisplayName":{"value":"Request_Update"}},"parameterHintsV2":{"workflowName":{"value":"cd9f4d7a-db86-4c05-a217-bedf8e09ef0a"},"workflowEntityId":{"value":"08be9ef6-a569-f011-bec2-002248294a26"},"workflowDisplayName":{"value":"Request_Update"}},"isOnPremiseConnection":false,"bypassConsent":false,"dataSets":{},"apiTier":"Standard","actions":["Run"]}}</ConnectionReferences>
+      <DatabaseReferences>{}</DatabaseReferences>
+      <AppComponents>[]</AppComponents>
+      <AppComponentDependencies>[]</AppComponentDependencies>
+      <CanConsumeAppPass>1</CanConsumeAppPass>
+      <CanvasAppType>0</CanvasAppType>
+      <BypassConsent>0</BypassConsent>
+      <AdminControlBypassConsent>0</AdminControlBypassConsent>
+      <EmbeddedApp xsi:nil="true"></EmbeddedApp>
+      <IntroducedVersion>1.0</IntroducedVersion>
+      <CdsDependencies>{"cdsdependencies":[{"dependencyid":"98203513-aebe-ef11-b8e8-7c1e520d2ae4","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"265cd31d-f6a7-ef11-b8e8-7c1e5266e221","componenttype":29,"componenttypeplatformname":"Workflow"},{"dependencyid":"08be9ef6-a569-f011-bec2-002248294a26","componenttype":29,"componenttypeplatformname":"Workflow"}]}</CdsDependencies>
+      <IsCustomizable>1</IsCustomizable>
+      <BackgroundImageUri>/CanvasApps/new_strintakeapp_5226d_BackgroundImageUri</BackgroundImageUri>
+      <DocumentUri>/CanvasApps/new_strintakeapp_5226d_DocumentUri.msapp</DocumentUri>
+      <AdditionalUris>
+        <AdditionalUri>/CanvasApps/new_strintakeapp_5226d_AdditionalUris0_identity.json</AdditionalUri>
+      </AdditionalUris>
+    </CanvasApp>
+  </CanvasApps>
+  <Languages>
+    <Language>1033</Language>
+  </Languages>
+</ImportExportXml>

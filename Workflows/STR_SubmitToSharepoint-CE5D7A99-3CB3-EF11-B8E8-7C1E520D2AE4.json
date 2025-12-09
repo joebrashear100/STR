@@ -1,0 +1,1314 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_onedriveforbusiness_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "ia_sharedonedriveforbusiness_f8fab"
+        },
+        "api": {
+          "name": "shared_onedriveforbusiness"
+        }
+      },
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_b97f5"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "f2e17807-fbc1-4c9b-8f4b-c108686bfa15"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Input",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "file": {
+                  "title": "ArchImg",
+                  "type": "object",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please select file or image",
+                  "x-ms-content-hint": "FILE",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "contentBytes": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                },
+                "file_1": {
+                  "title": "AIImpactImg",
+                  "type": "object",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please select file or image",
+                  "x-ms-content-hint": "FILE",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "contentBytes": {
+                      "type": "string",
+                      "format": "byte"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "text"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Scope_2": {
+          "actions": {
+            "Respond_to_a_Power_App_or_flow": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "42415475-4def-4ab7-aa7f-1f99f5672aad"
+              },
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "response": 0,
+                  "errormessage": "Fatal error recorded in submission workflow. Development team has been notified."
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "response": {
+                      "title": "Response",
+                      "x-ms-dynamically-added": true,
+                      "type": "number"
+                    },
+                    "errormessage": {
+                      "title": "ErrorMessage",
+                      "x-ms-dynamically-added": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "170da0cd-fd53-4811-b1f6-5a57f57f9c65"
+          },
+          "type": "Scope"
+        },
+        "Initialize_variable": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "0b44ff5b-6e83-4570-a09c-7ba23be57c6d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Fields_Array",
+                "type": "array",
+                "value": "@split(triggerBody()['text'], '|')"
+              }
+            ]
+          }
+        },
+        "Try": {
+          "actions": {
+            "Condition": {
+              "actions": {
+                "Condition_2": {
+                  "actions": {
+                    "Create_file_5": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "2b9a5f19-3c0f-40d1-bfdc-3a9824ede1a3"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_onedriveforbusiness_1",
+                          "operationId": "CreateFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                        },
+                        "parameters": {
+                          "folderPath": "/STRIntakeDocumentLibrary",
+                          "name": "@{GUID()}@{triggerBody()?['file_1']?['name']}",
+                          "body": "@triggerBody()['file_1']['contentBytes']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "contentTransfer": {
+                          "transferMode": "Chunked"
+                        }
+                      }
+                    },
+                    "Create_share_link": {
+                      "runAfter": {
+                        "Create_file_5": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "e4c7ca9e-7bd2-4ee3-b5bf-713b2ab1fa5a"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_onedriveforbusiness_1",
+                          "operationId": "CreateShareLinkV2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                        },
+                        "parameters": {
+                          "id": "@outputs('Create_file_5')?['body/Id']",
+                          "type": "View",
+                          "scope": "Organization"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {},
+                  "expression": {
+                    "not": {
+                      "equals": [
+                        "@triggerBody()?['file_1']?['name']",
+                        "@string(null)"
+                      ]
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "e5036778-026f-4148-930f-53397854c321"
+                  },
+                  "type": "If"
+                },
+                "Condition_3": {
+                  "actions": {
+                    "Create_file_6": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "6bef730f-b7e1-4fa9-9d40-d230dc331b05"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_onedriveforbusiness_1",
+                          "operationId": "CreateFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                        },
+                        "parameters": {
+                          "folderPath": "/STRIntakeDocumentLibrary",
+                          "name": "@{GUID()}@{triggerBody()?['file']?['name']}",
+                          "body": "@triggerBody()?['file']?['contentBytes']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "contentTransfer": {
+                          "transferMode": "Chunked"
+                        }
+                      }
+                    },
+                    "Create_share_link_2": {
+                      "runAfter": {
+                        "Create_file_6": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "c6f8c0dd-01cc-4445-9b75-2cc776a28395"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_onedriveforbusiness_1",
+                          "operationId": "CreateShareLinkV2",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                        },
+                        "parameters": {
+                          "id": "@outputs('Create_file_6')?['body/Id']",
+                          "type": "View",
+                          "scope": "Organization"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Create_file_3": {
+                      "runAfter": {
+                        "Create_share_link_2": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "2b9a5f19-3c0f-40d1-bfdc-3a9824ede1a3"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "CreateFile",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                          "folderPath": "/STRDocuments/Architecture Diagram",
+                          "name": "@{GUID()}@{triggerBody()?['file']?['name']}",
+                          "body": "@triggerBody()?['file']?['contentBytes']"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      },
+                      "runtimeConfiguration": {
+                        "contentTransfer": {
+                          "transferMode": "Chunked"
+                        }
+                      }
+                    },
+                    "Create_sharing_link_for_a_file_or_folder_2": {
+                      "runAfter": {
+                        "Create_file_3": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "58794df7-25ef-4329-a5a2-cf965aef284a"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_sharepointonline_1",
+                          "operationId": "CreateSharingLink",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                        },
+                        "parameters": {
+                          "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                          "table": "bfc2a661-52a1-4f6c-807a-0e3eb2ba45ff",
+                          "id": "@outputs('Create_file_3')?['body/ItemId']",
+                          "permission/type": "view",
+                          "permission/scope": "organization"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Condition_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "not": {
+                      "equals": [
+                        "@triggerBody()?['file']?['name']",
+                        "@string(null)"
+                      ]
+                    }
+                  },
+                  "metadata": {
+                    "operationMetadataId": "c461fdec-4327-4f74-b9ec-5e333af052cd"
+                  },
+                  "type": "If"
+                },
+                "Create_item": {
+                  "runAfter": {
+                    "Check_if_AWS_is_Null": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "2bd18824-bfaa-4fb3-a439-b5d8b320bd55"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline_1",
+                      "operationId": "PostItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                      "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                      "item/Title": "@variables('Fields_Array')[5]",
+                      "item/Request_x0020_Name_x0020__x0028_/Claims": "@if(empty(variables('Fields_Array')[1]), null, concat('i:0#.f|membership|', variables('Fields_Array')[1]))\r\n",
+                      "item/Requestor0": "@variables('Fields_Array')[0]",
+                      "item/Block_x0020_Code": "@variables('Fields_Array')[13]",
+                      "item/Criticality_x0020_Tier/Value": "@variables('Fields_Array')[19]",
+                      "item/Vendor": "@variables('Fields_Array')[8]",
+                      "item/Vendor_x0020_State/Value": "@variables('Fields_Array')[9]",
+                      "item/Domain_x0020_Approved": "@variables('Fields_Array')[3]",
+                      "item/Description": "@variables('Fields_Array')[6]",
+                      "item/ApprovedDeveloperTool/Value": "@variables('Fields_Array')[65]",
+                      "item/Type_x0020__x0028_POC_x002c__x00": [
+                        {
+                          "Value": "@variables('Fields_Array')[66]"
+                        }
+                      ],
+                      "item/POCEndDate": "@variables('Fields_Array')[12]",
+                      "item/Date_Requested": "@variables('Fields_Array')[2]",
+                      "item/STR_x0020_Approved/Value": "Pending",
+                      "item/IR_x0020_Approver/Value": "Pending",
+                      "item/Infosec_x0020_Approver/Value": "Pending",
+                      "item/Arch_x0020_Gov_x0020_Approver/Value": "Pending",
+                      "item/FinOps_x0020_Approver/Value": "@if(\n  and(\n    not(empty(body('Parse_AI_Multi-Select'))),\n    greater(length(body('Parse_AI_Multi-Select')), 0),\n    not(empty(first(body('Parse_AI_Multi-Select'))?['Value'])),\n    contains(toLower(string(first(body('Parse_AI_Multi-Select'))?['Value'])), 'no'),\n    empty(body('Parse_3'))\n  ),\n  'NA',\n  'Pending'\n)",
+                      "item/Notes": "@variables('Fields_Array')[7]",
+                      "item/Internal_x0020_Build_x0020_Type/Value": "@variables('Fields_Array')[10]",
+                      "item/Requestor_x0020_Email": "@variables('Fields_Array')[1]",
+                      "item/Restricted_x0020_to_x0020_Domain/Value": "@variables('Fields_Array')[4]",
+                      "item/Product_x0020_Type/Value": "@variables('Fields_Array')[16]",
+                      "item/AI_x0020__x002f__x0020_GenAI_x00": "@body('Parse_AI_Multi-Select')",
+                      "item/Cloud_x0020_Based_x0020_Solution/Value": "@variables('Fields_Array')[20]",
+                      "item/SaaS_x0020_Product_x0020_Integra/Value": "@variables('Fields_Array')[21]",
+                      "item/AWS": "@body('Parse_3')",
+                      "item/Other_x0020_Information/Value": "@variables('Fields_Array')[22]",
+                      "item/URL_x0020_for_x0020_Free_x002f_O": "@variables('Fields_Array')[23]",
+                      "item/Software_x0020_Executables": "@variables('Fields_Array')[24]",
+                      "item/Confirm_x0020_SaaS_x0020_Mandate/Value": "@variables('Fields_Array')[26]",
+                      "item/Confirm_x0020_AI_x0020_Mandate_x/Value": "@variables('Fields_Array')[25]",
+                      "item/Summary_x0020_of_x0020_New_x0020": "@variables('Fields_Array')[27]",
+                      "item/Describe_x0020_Business_x0020_Be": "@variables('Fields_Array')[28]",
+                      "item/List_x0020_Specific_x0020_Capabi": "@variables('Fields_Array')[29]",
+                      "item/Data_x0020_Residency_x002f_Proce": "@variables('Fields_Array')[30]",
+                      "item/List_x0020_Equivalent_x0020_Prod": "@variables('Fields_Array')[31]",
+                      "item/Describe_x0020_Alternative_x0020": "@variables('Fields_Array')[32]",
+                      "item/Provide_x0020_One_x002d_Time_x00": "@variables('Fields_Array')[33]",
+                      "item/Ongoing_x0020_Hardware_x0020_Ope": "@variables('Fields_Array')[34]",
+                      "item/Ongoing_x0020_Labor_x0020_Operat": "@variables('Fields_Array')[35]",
+                      "item/Operational_x0020_Support_x0020_": "@variables('Fields_Array')[36]",
+                      "item/Cloud_x0020__x0028_AWS_x0029__x0": "@variables('Fields_Array')[37]",
+                      "item/Provide_x0020_Overview_x0020_of_": "@variables('Fields_Array')[38]",
+                      "item/Cost_x0020_of_x0020_Support_x002": "@variables('Fields_Array')[39]",
+                      "item/Costs_x0020_that_x0020_Impact_x0": "@variables('Fields_Array')[40]",
+                      "item/Reduction_x002f_Retirements_x002": "@variables('Fields_Array')[41]",
+                      "item/Supply_x0020_Chain_x0020_Contact0/Claims": "@if(empty(variables('Fields_Array')[73]), null, concat('i:0#.f|membership|', variables('Fields_Array')[73]))\r\n",
+                      "item/Legal_x003a__x0020_License_x0020": "@variables('Fields_Array')[43]",
+                      "item/Operational_x0020_Risk_x0020__x0": "@variables('Fields_Array')[44]",
+                      "item/Security_x0020_Vendor_x0020_Risk": "@variables('Fields_Array')[61]",
+                      "item/Privacy_x0020_Impact_x0020_Asses": "@variables('Fields_Array')[59]",
+                      "item/Initial_x0020_Adoption_x0020_Pla": "@variables('Fields_Array')[45]",
+                      "item/Mainstream_x0020_Adoption_x0020_": "@variables('Fields_Array')[46]",
+                      "item/Restrictions_x0020__x002f__x0020": "@variables('Fields_Array')[47]",
+                      "item/Repository_x0020__x002f__x0020_L": "@variables('Fields_Array')[48]",
+                      "item/Sr_x0020_Portfolio_x0020_Archite": "@variables('Fields_Array')[62]",
+                      "item/POC_x002f_Pilot_x0020_Duration": "@variables('Fields_Array')[11]",
+                      "item/Architecture_x0020_Diagram_x002f": "@outputs('Create_sharing_link_for_a_file_or_folder_2')?['body/link/webUrl']",
+                      "item/IT_x0020_Manager/Claims": "@if(empty(variables('Fields_Array')[71]), null, concat('i:0#.f|membership|', variables('Fields_Array')[71]))\r\n",
+                      "item/IT_x0020_Portfolio_x0020_Archite/Claims": "@if(empty(variables('Fields_Array')[72]), null, concat('i:0#.f|membership|', variables('Fields_Array')[72]))\r\n",
+                      "item/Request_x0020_Type_x0020_Change": [
+                        {
+                          "Value": "@variables('Fields_Array')[67]"
+                        }
+                      ],
+                      "item/Form_x0020_Submission_x0020_Type/Value": "@variables('Fields_Array')[63]",
+                      "item/ITPortArchText": "@variables('Fields_Array')[15]\r\n",
+                      "item/SupplyChainText": "@variables('Fields_Array')[42]",
+                      "item/ITManagerText": "@variables('Fields_Array')[14]",
+                      "item/POCEndDateText": "@variables('Fields_Array')[12]",
+                      "item/IRApproverText": "anthony.rollins@delta.com;",
+                      "item/InfosecApproverText": "stuart.smith@delta.com;brett.valentine@delta.com;",
+                      "item/ArchGovApproverText": "kim.baima@delta.com;bret.martin@delta.com;",
+                      "item/CCoEApproverText": "matthew.penna@delta.com;",
+                      "item/Domain_x0020_Name": "@variables('Fields_Array')[68]",
+                      "item/SaaSNotes": "<p>@{variables('Fields_Array')[69]}</p>",
+                      "item/AINotes": "<p>@{variables('Fields_Array')[70]}</p>"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Check_If_AI_is_Null": {
+                  "actions": {
+                    "Parse_AI_Multi-Select": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "7d9f4870-0e5b-4984-aee4-9532687977f0"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@variables('Fields_Array')[17]",
+                        "schema": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "Value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "Value"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Condition_3": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "and": [
+                      {
+                        "not": {
+                          "equals": [
+                            "@variables('Fields_Array')[17]",
+                            "@string('null')"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@variables('Fields_Array')[17]",
+                            "@string(null)"
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a3f05fdd-a78a-4b13-8c57-ddbeb22902c9"
+                  },
+                  "type": "If"
+                },
+                "Check_if_AWS_is_Null": {
+                  "actions": {
+                    "Parse_3": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "7d9f4870-0e5b-4984-aee4-9532687977f0"
+                      },
+                      "type": "ParseJson",
+                      "inputs": {
+                        "content": "@variables('Fields_Array')[18]",
+                        "schema": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "Value": {
+                                "type": "string"
+                              }
+                            },
+                            "required": [
+                              "Value"
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Check_If_AI_is_Null": [
+                      "Succeeded"
+                    ]
+                  },
+                  "expression": {
+                    "and": [
+                      {
+                        "not": {
+                          "equals": [
+                            "@variables('Fields_Array')[18]",
+                            "@string('null')"
+                          ]
+                        }
+                      },
+                      {
+                        "not": {
+                          "equals": [
+                            "@variables('Fields_Array')[18]",
+                            "@string(null)"
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "9ab00514-a9dc-4bac-ae34-8fd851bda755"
+                  },
+                  "type": "If"
+                },
+                "Update_item_2": {
+                  "runAfter": {
+                    "Create_item": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "df79cba7-9faa-43e7-a587-23dc798e9f87"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline_1",
+                      "operationId": "PatchItem",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                      "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                      "id": "@outputs('Create_item')?['body/ID']",
+                      "item/PreviousVersionID": "@outputs('Create_item')?['body/ID']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Respond_to_a_Power_App_or_flow_5": {
+                  "runAfter": {
+                    "Add_attachment_create": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "42415475-4def-4ab7-aa7f-1f99f5672aad"
+                  },
+                  "type": "Response",
+                  "kind": "PowerApp",
+                  "inputs": {
+                    "statusCode": 200,
+                    "body": {
+                      "response": 1,
+                      "errormessage": "None"
+                    },
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "response": {
+                          "title": "Response",
+                          "x-ms-dynamically-added": true,
+                          "type": "number"
+                        },
+                        "errormessage": {
+                          "title": "ErrorMessage",
+                          "x-ms-dynamically-added": true,
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                },
+                "Add_attachment_create": {
+                  "runAfter": {
+                    "Update_item_2": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "981e4fee-3b35-43a5-a0d6-e57fb3119173"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline_1",
+                      "operationId": "CreateAttachment",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                      "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                      "itemId": "@outputs('Create_item')?['body/ID']",
+                      "displayName": "@{GUID()}@{triggerBody()?['file']?['name']}",
+                      "body": "@triggerBody()?['file']?['contentBytes']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "else": {
+                "actions": {
+                  "Condition_6": {
+                    "actions": {
+                      "Create_file": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "2b9a5f19-3c0f-40d1-bfdc-3a9824ede1a3"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_onedriveforbusiness_1",
+                            "operationId": "CreateFile",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                          },
+                          "parameters": {
+                            "folderPath": "/STRIntakeDocumentLibrary",
+                            "name": "@{GUID()}@{triggerBody()?['file_1']?['name']}",
+                            "body": "@triggerBody()['file_1']['contentBytes']"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        },
+                        "runtimeConfiguration": {
+                          "contentTransfer": {
+                            "transferMode": "Chunked"
+                          }
+                        }
+                      },
+                      "Create_share_link_3": {
+                        "runAfter": {
+                          "Create_file": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "e4c7ca9e-7bd2-4ee3-b5bf-713b2ab1fa5a"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_onedriveforbusiness_1",
+                            "operationId": "CreateShareLinkV2",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                          },
+                          "parameters": {
+                            "id": "@outputs('Create_file')?['body/Id']",
+                            "type": "View",
+                            "scope": "Organization"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      }
+                    },
+                    "runAfter": {},
+                    "expression": {
+                      "not": {
+                        "equals": [
+                          "@triggerBody()?['file_1']?['name']",
+                          "@string(null)"
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "operationMetadataId": "e5036778-026f-4148-930f-53397854c321"
+                    },
+                    "type": "If"
+                  },
+                  "Condition_7": {
+                    "actions": {
+                      "Create_file_2": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "6bef730f-b7e1-4fa9-9d40-d230dc331b05"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_onedriveforbusiness_1",
+                            "operationId": "CreateFile",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                          },
+                          "parameters": {
+                            "folderPath": "/STRIntakeDocumentLibrary",
+                            "name": "@{GUID()}@{triggerBody()?['file']?['name']}",
+                            "body": "@triggerBody()?['file']?['contentBytes']"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        },
+                        "runtimeConfiguration": {
+                          "contentTransfer": {
+                            "transferMode": "Chunked"
+                          }
+                        }
+                      },
+                      "Create_share_link_4": {
+                        "runAfter": {
+                          "Create_file_2": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c6f8c0dd-01cc-4445-9b75-2cc776a28395"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_onedriveforbusiness_1",
+                            "operationId": "CreateShareLinkV2",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_onedriveforbusiness"
+                          },
+                          "parameters": {
+                            "id": "@outputs('Create_file_2')?['body/Id']",
+                            "type": "View",
+                            "scope": "Organization"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      },
+                      "Create_file_4": {
+                        "runAfter": {
+                          "Create_share_link_4": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "6bef730f-b7e1-4fa9-9d40-d230dc331b05"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_sharepointonline_1",
+                            "operationId": "CreateFile",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                          },
+                          "parameters": {
+                            "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                            "folderPath": "/STRDocuments/Architecture Diagram",
+                            "name": "@{GUID()}@{triggerBody()?['file']?['name']}",
+                            "body": "@triggerBody()?['file']?['contentBytes']"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        },
+                        "runtimeConfiguration": {
+                          "contentTransfer": {
+                            "transferMode": "Chunked"
+                          }
+                        }
+                      },
+                      "Create_sharing_link_for_a_file_or_folder_3": {
+                        "runAfter": {
+                          "Create_file_4": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "281ed91a-916d-459c-9062-994c382229de"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_sharepointonline_1",
+                            "operationId": "CreateSharingLink",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                          },
+                          "parameters": {
+                            "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                            "table": "bfc2a661-52a1-4f6c-807a-0e3eb2ba45ff",
+                            "id": "@outputs('Create_file_4')?['body/ItemId']",
+                            "permission/type": "view",
+                            "permission/scope": "organization"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      }
+                    },
+                    "runAfter": {
+                      "Condition_6": [
+                        "Succeeded"
+                      ]
+                    },
+                    "expression": {
+                      "not": {
+                        "equals": [
+                          "@triggerBody()?['file']?['name']",
+                          "@string(null)"
+                        ]
+                      }
+                    },
+                    "metadata": {
+                      "operationMetadataId": "c461fdec-4327-4f74-b9ec-5e333af052cd"
+                    },
+                    "type": "If"
+                  },
+                  "Check_If_AI_is_Null_2": {
+                    "actions": {
+                      "Parse_AI_In_Update": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "7d9f4870-0e5b-4984-aee4-9532687977f0"
+                        },
+                        "type": "ParseJson",
+                        "inputs": {
+                          "content": "@variables('Fields_Array')[17]",
+                          "schema": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "Value"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "runAfter": {
+                      "Condition_7": [
+                        "Succeeded"
+                      ]
+                    },
+                    "expression": {
+                      "and": [
+                        {
+                          "not": {
+                            "equals": [
+                              "@variables('Fields_Array')[17]",
+                              "@string('null')"
+                            ]
+                          }
+                        },
+                        {
+                          "not": {
+                            "equals": [
+                              "@variables('Fields_Array')[17]",
+                              "@string(null)"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "13747e84-8d36-473d-82c6-dc42484afc7d"
+                    },
+                    "type": "If"
+                  },
+                  "Check_if_AWS_is_Null_2": {
+                    "actions": {
+                      "Parse_AWS_In_Update": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "7d9f4870-0e5b-4984-aee4-9532687977f0"
+                        },
+                        "type": "ParseJson",
+                        "inputs": {
+                          "content": "@variables('Fields_Array')[18]",
+                          "schema": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "Value": {
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "Value"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "runAfter": {
+                      "Check_If_AI_is_Null_2": [
+                        "Succeeded"
+                      ]
+                    },
+                    "expression": {
+                      "and": [
+                        {
+                          "not": {
+                            "equals": [
+                              "@variables('Fields_Array')[18]",
+                              "@string('null')"
+                            ]
+                          }
+                        },
+                        {
+                          "not": {
+                            "equals": [
+                              "@variables('Fields_Array')[18]",
+                              "@string(null)"
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "66c5dc6a-e5e3-464a-b4b1-47331ce71b76"
+                    },
+                    "type": "If"
+                  },
+                  "Get_item": {
+                    "runAfter": {
+                      "Check_if_AWS_is_Null_2": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "0890ce93-e06a-46ef-8531-ff8c07d3cd06"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_sharepointonline_1",
+                        "operationId": "GetItem",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                      },
+                      "parameters": {
+                        "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                        "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                        "id": "@int(variables('Fields_Array')[64])"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  },
+                  "Condition_4": {
+                    "actions": {
+                      "Add_attachment_update": {
+                        "runAfter": {
+                          "Update_item_3": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c4d242e7-aa19-4a73-b21c-892e3f6fada8"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_sharepointonline_1",
+                            "operationId": "CreateAttachment",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                          },
+                          "parameters": {
+                            "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                            "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                            "itemId": "@outputs('Update_item_3')?['body/ID']",
+                            "displayName": "@{GUID()}@{triggerBody()?['file']?['name']}",
+                            "body": "@triggerBody()?['file']?['contentBytes']"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      },
+                      "Update_item_3": {
+                        "runAfter": {},
+                        "metadata": {
+                          "operationMetadataId": "f8ebf7ac-1861-4180-974c-42d9f52931fc"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "host": {
+                            "connectionName": "shared_sharepointonline_1",
+                            "operationId": "PatchItem",
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                          },
+                          "parameters": {
+                            "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                            "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                            "id": "@int(variables('Fields_Array')[64])",
+                            "item/Title": "@variables('Fields_Array')[5]",
+                            "item/Request_x0020_Name_x0020__x0028_/Claims": "@if(empty(variables('Fields_Array')[1]), null, concat('i:0#.f|membership|', variables('Fields_Array')[1]))\r\n",
+                            "item/Requestor0": "@variables('Fields_Array')[0]",
+                            "item/Block_x0020_Code": "@variables('Fields_Array')[13]",
+                            "item/Criticality_x0020_Tier/Value": "@variables('Fields_Array')[19]",
+                            "item/Vendor": "@variables('Fields_Array')[8]",
+                            "item/Vendor_x0020_State/Value": "@variables('Fields_Array')[9]",
+                            "item/Domain_x0020_Approved": "@variables('Fields_Array')[3]",
+                            "item/Description": "@variables('Fields_Array')[6]",
+                            "item/ApprovedDeveloperTool/Value": "@variables('Fields_Array')[65]",
+                            "item/Type_x0020__x0028_POC_x002c__x00": [
+                              {
+                                "Value": "@variables('Fields_Array')[66]"
+                              }
+                            ],
+                            "item/POCEndDate": "@variables('Fields_Array')[12]",
+                            "item/Date_Requested": "@variables('Fields_Array')[2]",
+                            "item/STR_x0020_Approved/Value": "Pending",
+                            "item/IR_x0020_Approver/Value": "Pending",
+                            "item/Infosec_x0020_Approver/Value": "Pending",
+                            "item/Arch_x0020_Gov_x0020_Approver/Value": "Pending",
+                            "item/FinOps_x0020_Approver/Value": "@if( and( not(empty(body('Parse_AI_In_Update'))), greater(length(body('Parse_AI_In_Update')), 0), not(empty(first(body('Parse_AI_In_Update'))?['Value'])), contains(toLower(string(first(body('Parse_AI_In_Update'))?['Value'])), 'no'), empty(body('Parse_AWS_In_Update')) ), 'NA', 'Pending' )",
+                            "item/Notes": "@variables('Fields_Array')[7]",
+                            "item/Internal_x0020_Build_x0020_Type/Value": "@variables('Fields_Array')[10]",
+                            "item/Requestor_x0020_Email": "@variables('Fields_Array')[1]",
+                            "item/Restricted_x0020_to_x0020_Domain/Value": "@variables('Fields_Array')[4]",
+                            "item/Product_x0020_Type/Value": "@variables('Fields_Array')[16]",
+                            "item/AI_x0020__x002f__x0020_GenAI_x00": "@body('Parse_AI_In_Update')",
+                            "item/Cloud_x0020_Based_x0020_Solution/Value": "@variables('Fields_Array')[20]",
+                            "item/SaaS_x0020_Product_x0020_Integra/Value": "@variables('Fields_Array')[21]",
+                            "item/AWS": "@body('Parse_AWS_In_Update')",
+                            "item/Other_x0020_Information/Value": "@variables('Fields_Array')[22]",
+                            "item/URL_x0020_for_x0020_Free_x002f_O": "@variables('Fields_Array')[23]",
+                            "item/Software_x0020_Executables": "@variables('Fields_Array')[24]",
+                            "item/Confirm_x0020_SaaS_x0020_Mandate/Value": "@variables('Fields_Array')[26]",
+                            "item/Confirm_x0020_AI_x0020_Mandate_x/Value": "@variables('Fields_Array')[25]",
+                            "item/Summary_x0020_of_x0020_New_x0020": "@variables('Fields_Array')[27]",
+                            "item/Describe_x0020_Business_x0020_Be": "@variables('Fields_Array')[28]",
+                            "item/List_x0020_Specific_x0020_Capabi": "@variables('Fields_Array')[29]",
+                            "item/Data_x0020_Residency_x002f_Proce": "@variables('Fields_Array')[30]",
+                            "item/List_x0020_Equivalent_x0020_Prod": "@variables('Fields_Array')[31]",
+                            "item/Describe_x0020_Alternative_x0020": "@variables('Fields_Array')[32]",
+                            "item/Provide_x0020_One_x002d_Time_x00": "@variables('Fields_Array')[33]",
+                            "item/Ongoing_x0020_Hardware_x0020_Ope": "@variables('Fields_Array')[34]",
+                            "item/Ongoing_x0020_Labor_x0020_Operat": "@variables('Fields_Array')[35]",
+                            "item/Operational_x0020_Support_x0020_": "@variables('Fields_Array')[36]",
+                            "item/Cloud_x0020__x0028_AWS_x0029__x0": "@variables('Fields_Array')[37]",
+                            "item/Provide_x0020_Overview_x0020_of_": "@variables('Fields_Array')[38]",
+                            "item/Cost_x0020_of_x0020_Support_x002": "@variables('Fields_Array')[39]",
+                            "item/Costs_x0020_that_x0020_Impact_x0": "@variables('Fields_Array')[40]",
+                            "item/Reduction_x002f_Retirements_x002": "@variables('Fields_Array')[41]",
+                            "item/Supply_x0020_Chain_x0020_Contact0/Claims": "@if(empty(variables('Fields_Array')[73]), null, concat('i:0#.f|membership|', variables('Fields_Array')[73]))\r\n",
+                            "item/Legal_x003a__x0020_License_x0020": "@variables('Fields_Array')[43]",
+                            "item/Operational_x0020_Risk_x0020__x0": "@variables('Fields_Array')[44]",
+                            "item/Security_x0020_Vendor_x0020_Risk": "@variables('Fields_Array')[61]",
+                            "item/Privacy_x0020_Impact_x0020_Asses": "@variables('Fields_Array')[59]",
+                            "item/Initial_x0020_Adoption_x0020_Pla": "@variables('Fields_Array')[45]",
+                            "item/Mainstream_x0020_Adoption_x0020_": "@variables('Fields_Array')[46]",
+                            "item/Restrictions_x0020__x002f__x0020": "@variables('Fields_Array')[47]",
+                            "item/Repository_x0020__x002f__x0020_L": "@variables('Fields_Array')[48]",
+                            "item/Sr_x0020_Portfolio_x0020_Archite": "@variables('Fields_Array')[62]",
+                            "item/POC_x002f_Pilot_x0020_Duration": "@variables('Fields_Array')[11]",
+                            "item/Architecture_x0020_Diagram_x002f": "@coalesce(outputs('Create_sharing_link_for_a_file_or_folder_3')?['body/link/webUrl'], outputs('Get_item')?['body/Architecture_x0020_Diagram_x002f'])",
+                            "item/IT_x0020_Manager/Claims": "@if(empty(variables('Fields_Array')[71]), null, concat('i:0#.f|membership|', variables('Fields_Array')[71]))\r\n",
+                            "item/IT_x0020_Portfolio_x0020_Archite/Claims": "@if(empty(variables('Fields_Array')[72]), null, concat('i:0#.f|membership|', variables('Fields_Array')[72]))\r\n",
+                            "item/Request_x0020_Type_x0020_Change": [
+                              {
+                                "Value": "@variables('Fields_Array')[67]"
+                              }
+                            ],
+                            "item/Form_x0020_Submission_x0020_Type/Value": "@variables('Fields_Array')[63]",
+                            "item/ITPortArchText": "@variables('Fields_Array')[15]",
+                            "item/SupplyChainText": "@variables('Fields_Array')[42]",
+                            "item/ITManagerText": "@variables('Fields_Array')[14]",
+                            "item/POCEndDateText": "@variables('Fields_Array')[12]",
+                            "item/IRApproverText": "anthony.rollins@delta.com;",
+                            "item/InfosecApproverText": "stuart.smith@delta.com;brett.valentine@delta.com;",
+                            "item/ArchGovApproverText": "kim.baima@delta.com;bret.martin@delta.com;",
+                            "item/CCoEApproverText": "matthew.penna@delta.com;",
+                            "item/Domain_x0020_Name": "@variables('Fields_Array')[68]",
+                            "item/SaaSNotes": "<p>@{variables('Fields_Array')[69]}</p>",
+                            "item/AINotes": "<p>@{variables('Fields_Array')[70]}</p>"
+                          },
+                          "authentication": "@parameters('$authentication')"
+                        }
+                      },
+                      "Respond_to_a_Power_App_or_flow_3": {
+                        "runAfter": {
+                          "Add_attachment_update": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "42415475-4def-4ab7-aa7f-1f99f5672aad"
+                        },
+                        "type": "Response",
+                        "kind": "PowerApp",
+                        "inputs": {
+                          "statusCode": 200,
+                          "body": {
+                            "response": 1,
+                            "errormessage": "None"
+                          },
+                          "schema": {
+                            "type": "object",
+                            "properties": {
+                              "response": {
+                                "title": "Response",
+                                "x-ms-dynamically-added": true,
+                                "type": "number"
+                              },
+                              "errormessage": {
+                                "title": "ErrorMessage",
+                                "x-ms-dynamically-added": true,
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "runAfter": {
+                      "Current_LastModified_TS": [
+                        "Succeeded"
+                      ]
+                    },
+                    "else": {
+                      "actions": {
+                        "Respond_to_a_Power_App_or_flow_4": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "42415475-4def-4ab7-aa7f-1f99f5672aad"
+                          },
+                          "type": "Response",
+                          "kind": "PowerApp",
+                          "inputs": {
+                            "statusCode": 200,
+                            "body": {
+                              "response": 0,
+                              "errormessage": "Version conflict detected. This STR request was modified by another user since you opened it. Refreshing now to load the latest version. Please review before continuing."
+                            },
+                            "schema": {
+                              "type": "object",
+                              "properties": {
+                                "response": {
+                                  "title": "Response",
+                                  "x-ms-dynamically-added": true,
+                                  "type": "number"
+                                },
+                                "errormessage": {
+                                  "title": "ErrorMessage",
+                                  "x-ms-dynamically-added": true,
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "expression": {
+                      "equals": [
+                        "@outputs('Incoming_TS')",
+                        "@outputs('Current_LastModified_TS')"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "5691e31a-6d0a-4f9f-b5c6-1b7b4bd1f0c2"
+                    },
+                    "type": "If"
+                  },
+                  "Current_LastModified_TS": {
+                    "runAfter": {
+                      "Incoming_TS": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "eb348500-f2c3-406b-8bdc-2ad304a32556"
+                    },
+                    "type": "Compose",
+                    "inputs": "@formatDateTime(outputs('Get_item_2')?['body/Modified'], 'yyyy-MM-ddTHH:mmZ')"
+                  },
+                  "Incoming_TS": {
+                    "runAfter": {
+                      "Get_item_2": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "b8e9a5ed-c60f-487f-a9df-481d25c6c52d"
+                    },
+                    "type": "Compose",
+                    "inputs": "@ variables('Fields_Array')[74]"
+                  },
+                  "Get_item_2": {
+                    "runAfter": {
+                      "Get_item": [
+                        "Succeeded"
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "0890ce93-e06a-46ef-8531-ff8c07d3cd06"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "host": {
+                        "connectionName": "shared_sharepointonline_1",
+                        "operationId": "GetItem",
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                      },
+                      "parameters": {
+                        "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                        "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                        "id": "@int(variables('Fields_Array')[64])"
+                      },
+                      "authentication": "@parameters('$authentication')"
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "equals": [
+                  "@empty(variables('Fields_Array')[64])",
+                  true
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "95e1f5c7-1f72-4591-b7d2-267105df0603"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Compose": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "6d165945-b7b0-424f-88ec-f4c351d0fc38"
+          },
+          "type": "Scope"
+        },
+        "Initialize_variable_2": {
+          "runAfter": {
+            "Initialize_variable": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b3f79bd0-4330-4410-95bc-1b8ce5364203"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "Sample ContentByte",
+                "type": "string",
+                "value": "PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjxzdmcgdmVyc2lvbj0iMS4xIg0KCSB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4bWxuczphPSJodHRwOi8vbnMuYWRvYmUuY29tL0Fkb2JlU1ZHVmlld2VyRXh0ZW5zaW9ucy8zLjAvIg0KCSB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI3MHB4IiBoZWlnaHQ9IjI3MHB4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCAyNzAgMjcwIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCgk8ZyBjbGFzcz0ic3QwIj4NCgkJPHJlY3QgeT0iMC43IiBmaWxsPSIjRTlFOUU5IiB3aWR0aD0iMjY5IiBoZWlnaHQ9IjI2OS4zIi8"
+              }
+            ]
+          }
+        },
+        "Compose": {
+          "runAfter": {
+            "Initialize_variable_2": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "060241fc-bbd9-433d-b5f8-2d82969d23ac"
+          },
+          "type": "Compose",
+          "inputs": "@variables('Fields_Array')[68]"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

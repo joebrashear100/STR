@@ -1,0 +1,152 @@
+<ImportExportXml version="9.2.25104.169" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.25104.169" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.25104.00169">
+  <SolutionManifest>
+    <UniqueName>STRUnmanaged</UniqueName>
+    <LocalizedNames>
+      <LocalizedName description="STR-Unmanaged" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions />
+    <Version>1.0.0.6</Version>
+    <Managed>0</Managed>
+    <Publisher>
+      <UniqueName>PranithPachlodia</UniqueName>
+      <LocalizedNames>
+        <LocalizedName description="Enterprise Automation" languagecode="1033" />
+      </LocalizedNames>
+      <Descriptions />
+      <EMailAddress xsi:nil="true"></EMailAddress>
+      <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
+      <CustomizationPrefix>ea</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>12204</CustomizationOptionValuePrefix>
+      <Addresses>
+        <Address>
+          <AddressNumber>1</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+        <Address>
+          <AddressNumber>2</AddressNumber>
+          <AddressTypeCode>1</AddressTypeCode>
+          <City xsi:nil="true"></City>
+          <County xsi:nil="true"></County>
+          <Country xsi:nil="true"></Country>
+          <Fax xsi:nil="true"></Fax>
+          <FreightTermsCode xsi:nil="true"></FreightTermsCode>
+          <ImportSequenceNumber xsi:nil="true"></ImportSequenceNumber>
+          <Latitude xsi:nil="true"></Latitude>
+          <Line1 xsi:nil="true"></Line1>
+          <Line2 xsi:nil="true"></Line2>
+          <Line3 xsi:nil="true"></Line3>
+          <Longitude xsi:nil="true"></Longitude>
+          <Name xsi:nil="true"></Name>
+          <PostalCode xsi:nil="true"></PostalCode>
+          <PostOfficeBox xsi:nil="true"></PostOfficeBox>
+          <PrimaryContactName xsi:nil="true"></PrimaryContactName>
+          <ShippingMethodCode>1</ShippingMethodCode>
+          <StateOrProvince xsi:nil="true"></StateOrProvince>
+          <Telephone1 xsi:nil="true"></Telephone1>
+          <Telephone2 xsi:nil="true"></Telephone2>
+          <Telephone3 xsi:nil="true"></Telephone3>
+          <TimeZoneRuleVersionNumber xsi:nil="true"></TimeZoneRuleVersionNumber>
+          <UPSZone xsi:nil="true"></UPSZone>
+          <UTCOffset xsi:nil="true"></UTCOffset>
+          <UTCConversionTimeZoneCode xsi:nil="true"></UTCConversionTimeZoneCode>
+        </Address>
+      </Addresses>
+    </Publisher>
+    <RootComponents>
+      <RootComponent type="29" id="{08be9ef6-a569-f011-bec2-002248294a26}" behavior="0" />
+      <RootComponent type="29" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" behavior="0" />
+      <RootComponent type="29" id="{ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4}" behavior="0" />
+      <RootComponent type="300" schemaName="new_strintakeapp_5226d" behavior="0" />
+    </RootComponents>
+    <MissingDependencies>
+      <MissingDependency>
+        <Required type="29" displayName="STR_DOC_New_Product_Request_Notification_v0.1" solution="STRINTAKE (1.0.0.3)" id="{265cd31d-f6a7-ef11-b8e8-7c1e5266e221}" />
+        <Dependent type="300" schemaName="new_strintakeapp_5226d" displayName="STR-Intake App" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="29" displayName="STR_ApproveRequest" solution="STRINTAKE (1.0.0.3)" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="29" displayName="STR_SubmitToSharepoint" solution="STRINTAKE (1.0.0.3)" id="{ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4}" />
+        <Dependent type="29" displayName="STR_SubmitToSharepoint" id="{ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="300" schemaName="new_strintakeapp_5226d" displayName="STR-Intake App" solution="STRINTAKE (1.0.0.3)" />
+        <Dependent type="300" schemaName="new_strintakeapp_5226d" displayName="STR-Intake App" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="ia_sharedoffice365_4cf85" solution="STRINTAKE (1.0.0.3)" id.connectionreferencelogicalname="ia_sharedoffice365_4cf85" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="ia_sharedonedriveforbusiness_f8fab" solution="STRINTAKE (1.0.0.3)" id.connectionreferencelogicalname="ia_sharedonedriveforbusiness_f8fab" />
+        <Dependent type="29" displayName="STR_SubmitToSharepoint" id="{ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedsharepointonline_b97f5" solution="STRINTAKE (1.0.0.3)" id.connectionreferencelogicalname="new_sharedsharepointonline_b97f5" />
+        <Dependent type="29" displayName="Request_Update" id="{08be9ef6-a569-f011-bec2-002248294a26}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedsharepointonline_b97f5" solution="STRINTAKE (1.0.0.3)" id.connectionreferencelogicalname="new_sharedsharepointonline_b97f5" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedsharepointonline_b97f5" solution="STRINTAKE (1.0.0.3)" id.connectionreferencelogicalname="new_sharedsharepointonline_b97f5" />
+        <Dependent type="29" displayName="STR_SubmitToSharepoint" id="{ce5d7a99-3cb3-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="ia_ENVSTR_Architecture_Approver_Team_Email_Address" solution="STRINTAKE (1.0.0.3)" id.schemaname="ia_ENVSTR_Architecture_Approver_Team_Email_Address" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="ia_ENVSTR_CCoE_Approver_Team_Email_Address" solution="STRINTAKE (1.0.0.3)" id.schemaname="ia_ENVSTR_CCoE_Approver_Team_Email_Address" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="ia_ENVSTR_DEV_Team_Email_Address" solution="STRINTAKE (1.0.0.3)" id.schemaname="ia_ENVSTR_DEV_Team_Email_Address" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="ia_ENVSTR_Infosec_Team_Email_Address" solution="STRINTAKE (1.0.0.3)" id.schemaname="ia_ENVSTR_Infosec_Team_Email_Address" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="ia_ENVSTR_Infrastructure_Approver_Team_Email_Address" solution="STRINTAKE (1.0.0.3)" id.schemaname="ia_ENVSTR_Infrastructure_Approver_Team_Email_Address" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="ia_ENVSTR_SharePoint_List_Name" solution="STRINTAKE (1.0.0.3)" id.schemaname="ia_ENVSTR_SharePoint_List_Name" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="EnvironmentVariableDefinition" displayName="ia_ENVSTR_SharePoint_Site_Address" solution="STRINTAKE (1.0.0.3)" id.schemaname="ia_ENVSTR_SharePoint_Site_Address" />
+        <Dependent type="29" displayName="STR_ApproveRequest" id="{98203513-aebe-ef11-b8e8-7c1e520d2ae4}" />
+      </MissingDependency>
+    </MissingDependencies>
+  </SolutionManifest>
+</ImportExportXml>

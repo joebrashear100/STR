@@ -1,0 +1,180 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_sharepointonline_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedsharepointonline_b97f5"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "metadata": {
+            "operationMetadataId": "ec2bf549-ba84-48d5-98ca-5e946d500417"
+          },
+          "type": "Request",
+          "kind": "PowerAppV2",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Approver_Requesting_Updates",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter your input",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "number": {
+                  "title": "Record_ID",
+                  "type": "number",
+                  "x-ms-dynamically-added": true,
+                  "description": "Please enter a number",
+                  "x-ms-content-hint": "NUMBER"
+                }
+              },
+              "required": [
+                "text",
+                "number"
+              ]
+            }
+          }
+        }
+      },
+      "actions": {
+        "Respond_to_a_Power_App_or_flow": {
+          "runAfter": {
+            "Catch": [
+              "Succeeded",
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "b837de5f-4e86-4321-b220-8c7d345684f0"
+          },
+          "type": "Response",
+          "kind": "PowerApp",
+          "inputs": {
+            "statusCode": 200,
+            "body": {
+              "response": "Success"
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "response": {
+                  "title": "Response",
+                  "x-ms-dynamically-added": true,
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "Try": {
+          "actions": {
+            "Get_item": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "1bfdbbd8-e84d-4c68-814f-e47a4a0e42ab"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "GetItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                  "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                  "id": "@triggerBody()['number']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Update_item": {
+              "runAfter": {
+                "Get_item": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "6a223cd1-2a2b-48b3-9d92-a98991a9ba93"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline_1",
+                  "operationId": "PatchItem",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://deltaairlines.sharepoint.com/sites/DL001597/PDO",
+                  "table": "dcfc03d1-1c02-4870-916d-bf7f5a2f71ba",
+                  "id": "@triggerBody()['number']",
+                  "item/STR_x0020_Approved/Value": "Pending",
+                  "item/IR_x0020_Approver/Value": "Pending",
+                  "item/Infosec_x0020_Approver/Value": "Pending",
+                  "item/Arch_x0020_Gov_x0020_Approver/Value": "Pending",
+                  "item/FinOps_x0020_Approver/Value": "@if(\n  equals(outputs('Get_item')?['body/FinOps_x0020_Approver/Value'], 'NA'),\n  'NA',\n  'Pending'\n)",
+                  "item/Form_x0020_Submission_x0020_Type/Value": "Draft Copy"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "eeb978de-166e-40db-b118-d6e4c853f252"
+          },
+          "type": "Scope"
+        },
+        "Catch": {
+          "actions": {
+            "Cast_ID_to_String_": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "d168c79d-81e9-4ac4-b4ae-a39ae13b3a92"
+              },
+              "type": "Compose",
+              "inputs": "@string(triggerBody()['number'])"
+            }
+          },
+          "runAfter": {
+            "Try": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "a117ad1c-6e52-4000-b0d7-63a99fe08bb3"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
