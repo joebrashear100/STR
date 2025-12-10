@@ -1,0 +1,222 @@
+Product Name,CSV Row,Status,Document Name,UUID Files,Match Type,Confidence
+Bedrock,62,Approved,276a96cc-7549-41bb-92ad-2d2ce00db634pce-bedrock.png,1,product_name_in_doc,high
+ACCELQ,1234,Approved,ACCELQ Architecture-Autopilot.pdf,2,product_name_in_doc,high
+AED Readiness Check,1264,Approved,AED Readiness Check Hub PMO1164-STR Conceptual.drawio.png,2,product_name_in_doc,high
+AXIS intercom PA system,1191,Approved,AXIS intercom PA system.drawio,2,product_name_in_doc,high
+ACCELQ,1234,Approved,AccelQ-Delta-Architecture-Diagram.pdf,4,product_name_in_doc,high
+Aerobahn SMAN,1317,Approved,Aerobahn SMAN drawing.docx,2,product_name_in_doc,high
+AlixPartners,1242,Cancelled,AlixPartners Arch Drawings.png,4,product_name_in_doc,high
+AlphaSense,1388,Approved,AlphaSense Conceptual_1104_25.drawio,2,product_name_in_doc,high
+AlphaSense,1388,Approved,AlphaSense Conceptual_1104_25.drawio.png,2,product_name_in_doc,high
+AlphaSense,1388,Approved,AlphaSense Conceptual_118b.drawio,4,product_name_in_doc,high
+Amazon Q,741,Approved,Amazon Q Usage Flow.jpg,1,product_name_in_doc,high
+Box,827,Rejected,AmberBox Data Flow Diagram - CONFIDENTIAL.pdf,2,product_name_in_doc,high
+Analytical AI,1092,Approved,Analytical AI Xray machine.docx,1,product_name_in_doc,high
+Arena,1392,Approved,Arena doc.png,2,product_name_in_doc,high
+Logi,176,Approved,Armis Logical Diagram.png,2,product_name_in_doc,high
+Avinym,1200,Approved,Avinym_Trial_OCC.jpeg,2,product_name_in_doc,high
+Logi,176,Approved,BRAND.ai Logical Architecture.png,2,product_name_in_doc,high
+Bedrock,62,Approved,Bedrock-Design.png,2,product_name_in_doc,high
+Calculum,1107,Approved,Calculum POC File Transfer-Conceptual.png,1,product_name_in_doc,high
+Calculum,1107,Approved,Calculum POC drawing pdf.docx,1,product_name_in_doc,high
+Canadian Disability Claims Administration,1219,Approved,Canadian Disability Claims Administration (by SunLife) 20250828-PMO1131-Conceptual for STR.drawio.png,2,product_name_in_doc,high
+Canadian Disability Claims Administration,1219,Approved,Canadian Disability Claims Administration (by SunLife) 20250912-PMO1131-Conceptual for STR.drawio.png,8,product_name_in_doc,high
+Canva,1453,Pending,Canva AI conceptual 1.png,2,product_name_in_doc,high
+Canva,1453,Pending,Canva AI conceptual.png,4,product_name_in_doc,high
+Logi,176,Approved,CenturyofFlightLogical.png,2,product_name_in_doc,high
+Cisco AI Defense,1319,Approved,Cisco AI Defense STR Diagram.drawio.png,1,product_name_in_doc,high
+Cisco AI Defense,1319,Approved,Cisco AI Defense STR Diagram_v2.png,2,product_name_in_doc,high
+Logi,176,Approved,CobbleStone - Logical Data Diagram.pdf,2,product_name_in_doc,high
+LivePerson AI,804,Approved,Conceptual Life at Work and LivePerson AI STR 2025-01-14.png,2,product_name_in_doc,high
+COPADO,1169,Pending,Copado.png,4,product_name_in_doc,high
+Cypress,1144,Approved,Cypress-Flow.png,2,product_name_in_doc,high
+DLV KM AI,1148,Approved,DLV KM AI_STR_Diagrams.jpg,2,product_name_in_doc,high
+DataSnipper,1316,Cancelled,DataSnipper_Conceptual.drawio,2,product_name_in_doc,high
+Databricks,1138,Approved,Databricks-Architecture-Diagram-for-Pilot.png,2,product_name_in_doc,high
+Databricks,1138,Approved,Databricks_PoC_Architecture_Diagram.pdf,2,product_name_in_doc,high
+Datatable,1088,Approved,Datatable Design Diagram.docx,1,product_name_in_doc,high
+AlphaSense,1388,Approved,Delta Air Lines AlphaSense IR Team User SigOn_1118.drawio,2,product_name_in_doc,high
+AlphaSense,1388,Approved,Delta Air Lines AlphaSense_1118a.drawio,2,product_name_in_doc,high
+Logi,176,Approved,Delta Locals-Logical Diagram L1.drawio.png,8,product_name_in_doc,high
+Gitleaks,1344,Rejected,DeveloperHub-gitleaks-architecture-diagram.jpg,30,product_name_in_doc,high
+Logi,176,Approved,Dinova Amex Feed Logical and Conceptual pdf.docx,1,product_name_in_doc,high
+Logi,176,Approved,Dinova-Amex Feed-Logical.jpg,2,product_name_in_doc,high
+Endeavor CCS Uniform Storefront,1077,Approved,Endeavor CCS Uniform Storefront-Deployment.drawio.png,1,product_name_in_doc,high
+Figma,245,Approved,Figma-MCP-Server-SaaS.png,2,product_name_in_doc,high
+Flashpoint,1370,Approved,FlashPoint Architeture.png,2,product_name_in_doc,high
+Logi,176,Approved,FliteDeckPro - Logical Drawing.png,2,product_name_in_doc,high
+GALE,1310,Approved,GALE-Deployment Architecture D1.drawio.png,4,product_name_in_doc,high
+Logi,176,Approved,GALE-Logical Diagram L1.drawio.png,2,product_name_in_doc,high
+Logi,176,Approved,GALE-Logical Diagram L1.png,2,product_name_in_doc,high
+Bedrock,62,Approved,GHW_Bedrock_Use_Case_Architecture.png,2,product_name_in_doc,high
+Greenshot,1141,Approved,Greenshot.png,2,product_name_in_doc,high
+GuiXT,1304,Approved,GuiXT Conceptual.drawio 1.pdf,8,product_name_in_doc,high
+GuiXT,1304,Approved,GuiXT Conceptual.drawio.pdf,2,product_name_in_doc,high
+Position Assistant,1268,Approved,HR Skills First Position Assistant Diagram.docx,1,product_name_in_doc,high
+Helm,1244,Approved,Helm_Diagram.png,2,product_name_in_doc,high
+Humatrix Singapore PSP,1429,Pending,Humatrix Singapore PSP 20251124-Conceptual-STR.drawio.png,4,product_name_in_doc,high
+RDI,26,Approved,IBM Guardium AI STR Diagram.jpg,2,product_name_in_doc,high
+RDI,26,Approved,IBM Guardium AI STR Diagram_v2.jpg,2,product_name_in_doc,high
+Logi,176,Approved,IBM SevOne Architecture - Logical v1.png,2,product_name_in_doc,high
+InvoiceWorks,1298,Approved,InvoiceWorks Conceptual.png,2,product_name_in_doc,high
+InvoiceWorks,1298,Approved,InvoiceWorks Conceptual_Updated.png,2,product_name_in_doc,high
+Koi,1410,Approved,Koi_Conceptual.png,2,product_name_in_doc,high
+Layover Solutions,1289,Approved,Layover Solutions.png,2,product_name_in_doc,high
+Localeez,1155,Approved,Localeez Drawing.png,2,product_name_in_doc,high
+Logi,176,Approved,Logical Diagram - CVent.png,4,product_name_in_doc,high
+Logi,176,Approved,Logical-iCoupon.png,2,product_name_in_doc,high
+Logi,176,Approved,Logical.png,2,product_name_in_doc,high
+MS Developer Studio 6.0,1409,Rejected,MS Developer Studio 6.0_NA.docx,2,product_name_in_doc,high
+Monday.com,1277,Approved,Monday.com Design.docx,2,product_name_in_doc,high
+Monday.com,1277,Approved,Monday.com STR Diagram.docx,1,product_name_in_doc,high
+Obstore,1207,Pending,Obstore.svg,4,product_name_in_doc,high
+Logi,176,Approved,Office Space Logical Draft.drawio,4,product_name_in_doc,high
+Logi,176,Approved,P2P-logical-flow.jpg,2,product_name_in_doc,high
+Palantir,1272,Rejected,Palantir AIP Architecture.pdf,2,product_name_in_doc,high
+Planete-Online,1174,Approved,Planete-Online-infra2025.pdf,2,product_name_in_doc,high
+Pluralytics AI,1204,Approved,Pluralytics AI - Conceptual Architecture- Updated.docx,2,product_name_in_doc,high
+Pluralytics AI,1204,Approved,Pluralytics AI - Conceptual Architecture.docx,4,product_name_in_doc,high
+Position Assistant,1268,Approved,Position Assistant Conceptual.png,2,product_name_in_doc,high
+Postman,1062,Approved,Postman Design Diagram.docx,4,product_name_in_doc,high
+Proofpoint,173,Approved,Proofpoint_ITM_Diagram.png,2,product_name_in_doc,high
+Pytest,1192,Approved,PyTest-Architecture.png,2,product_name_in_doc,high
+QuantumMetric,60,Approved,QuantumMetric_Editable_Architecture.png,46,product_name_in_doc,high
+Quick Suite,1314,Pending,Quick Suite UI.docx,2,product_name_in_doc,high
+Amazon Q,741,Approved,STR - Amazon Q Business and AWS Chatbot Strategic Portfolio New Product Request Form V3.1.docx,1,product_name_in_doc,high
+Care Retro Credit Agentforce POC,1399,Approved,STR 1851 - Care Retro Credit Agentforce POC Diagram.pdf,2,product_name_in_doc,high
+Logi,176,Approved,STR SSO Knowable Logicalv2.png,2,product_name_in_doc,high
+Logi,176,Approved,STR SSO Lyft Logical.html,2,product_name_in_doc,high
+Logi,176,Approved,STR SSO Lyft Logical.svg,2,product_name_in_doc,high
+COPADO,1169,Pending,SaaSMandateEvidence - COPADO.xlsx,2,product_name_in_doc,high
+SAFTE-FAST,558,Approved,Safte-Fast-Arch.pdf,2,product_name_in_doc,high
+Salesforce Agentforce,1093,Approved,Salesforce Agentforce Pilot Pay Design.pdf,2,product_name_in_doc,high
+Salesforce Feedback Management,1407,Approved,Salesforce Feedback Management.png,2,product_name_in_doc,high
+Selenium,1143,Approved,Selenium-WebDriver-Architecture.png,2,product_name_in_doc,high
+SkySelect,1179,Approved,SkySelect.png,2,product_name_in_doc,high
+Skywise,182,Approved,Skywise_LA.svg,4,product_name_in_doc,high
+AWS Transform,1376,Pending,Sofrs-AWS Transform.png,2,product_name_in_doc,high
+Soter AI,1220,Approved,Soter AI STR.png,2,product_name_in_doc,high
+Sprih,1278,Approved,Sprih Arch Drawings.png,4,product_name_in_doc,high
+Super Elastic Gumby,1246,Rejected,Super Elastic Gumby - STR Overview.pdf,4,product_name_in_doc,high
+Surgical Navigation Support (by Transcarent),1147,Approved,Surgical Navigation Support (by Transcarent) Drawings 20250705-PMO1127-Conceptual for STR.png,4,product_name_in_doc,high
+PC Miler,1437,Pending,TMS-PC Miler.pdf,2,product_name_in_doc,high
+SMC3,1465,Pending,TMS-SMC3.pdf,2,product_name_in_doc,high
+Logi,176,Approved,TOPBANCDDL_Logical_All_In_One.png,2,product_name_in_doc,high
+Tailscale,1273,Cancelled,TailScale.png,2,product_name_in_doc,high
+Tangoe Mobile,1065,Approved,Tangoe Mobile.vsdx,4,product_name_in_doc,high
+Logi,176,Approved,Udemy_Logical_AI assistant.pdf,2,product_name_in_doc,high
+UiPath,921,Approved,UiPath AICenter.png,2,product_name_in_doc,high
+Unity3D,1030,Approved,Unity3D.docx,1,product_name_in_doc,high
+Virtual Fairs,1308,Approved,Virtual Fairs by vFairs 2025-10-08 PMO1180-STR-Conceptual.drawio.png,2,product_name_in_doc,high
+AIOps,884,Approved,aiops.png,2,product_name_in_doc,high
+Box,827,Rejected,amber box.drawio,2,product_name_in_doc,high
+Box,827,Rejected,amber box.drawio.pdf,2,product_name_in_doc,high
+Analytical AI,1092,Approved,analytical AI.drawio,3,product_name_in_doc,high
+Chainguard,1132,Approved,chainguard-conceptual.png,2,product_name_in_doc,high
+COPADO,1169,Pending,copado-update.jpg,2,product_name_in_doc,high
+Cypress,1144,Approved,cypress_architecture.jpg,2,product_name_in_doc,high
+Devin,1346,Approved,devin_deployment_one_pager.pdf,4,product_name_in_doc,high
+Logi,176,Approved,farelogix-gui-deployment-architecture.png,2,product_name_in_doc,high
+Figma,245,Approved,figma-ai.png,7,product_name_in_doc,high
+Figma,245,Approved,figma-mcp-diagram.png,4,product_name_in_doc,high
+iCoupon,1126,Approved,iCoupon.png,1,product_name_in_doc,high
+Logi,176,Approved,logical_diagram_v2.jpg,2,product_name_in_doc,high
+NORA,1271,Approved,nora1.png,2,product_name_in_doc,high
+OneTrust,1247,Pending,onetrust-archer.png,2,product_name_in_doc,high
+Palantir,1272,Rejected,palantir-delta.png,10,product_name_in_doc,high
+Bedrock,62,Approved,pce-bedrock.png,1,product_name_in_doc,high
+qTest,1106,Approved,qTest Design diagram.docx,1,product_name_in_doc,high
+Resharper,159,Approved,rider_resharper_extended_diagram.png,2,product_name_in_doc,high
+zoxide,1395,Rejected,zoxide design diagram.png,2,product_name_in_doc,high
+zoxide,1395,Rejected,zoxide_sequence_diagram.pdf,2,product_name_in_doc,high
+NetIM & NetProfiler,,,AI Agent Design Diagram.pdf,2,keyword_match_Diagram,low
+NetIM & NetProfiler,,,AI ComplianceChecker Diagram1.jpg,2,keyword_match_Diagram,low
+AWS TimeStream,,,AICoachNadiaByValence_2025-08-05 PMO1113-STR Conceptual Add MS Outlook.drawio.png,4,keyword_match_STR,low
+AWS TimeStream,,,AICoachNadiaByValence_2025-08-05 PMO1113-STR Conceptual Add Teams.drawio.png,4,keyword_match_STR,low
+AWS TimeStream,,,AI_Arch-STR.drawio.pdf,4,keyword_match_STR,low
+NetIM & NetProfiler,,,ASI_Network_Manager_Data_Flow_Diagram.pdf,12,keyword_match_Diagram,low
+NetIM & NetProfiler,,,ASI_Network_Manager_Data_Flow_Diagram.png,52,keyword_match_Diagram,low
+NetIM & NetProfiler,,,AWS-Connect-Recorder-S3_NICE-Nexidia_OnDemand_Environment_Diagram_v1.0.pdf,2,keyword_match_Diagram,low
+NetIM & NetProfiler,,,Agentforce4DevelopersDiagram.png,21,keyword_match_Diagram,low
+AWS TimeStream,,,Agentforce_STR.png,2,keyword_match_STR,low
+NetIM & NetProfiler,,,Aha Design Diagram.docx,1,keyword_match_Diagram,low
+Cypress,,,AncillaryFrameworkKnowledgeBaseArch-Knowledge Base Architecture.jpg,2,keyword_match_Architecture,low
+Cypress,,,Architecture.pdf,4,keyword_match_Architecture,low
+NetIM & NetProfiler,,,Articulate 360 Design Diagram.pdf,4,keyword_match_Diagram,low
+Cypress,,,AutoSummary Architecture.pptx,2,keyword_match_Architecture,low
+NetIM & NetProfiler,,,BAMOE Design Diagrams.docx,1,keyword_match_Diagram,low
+AWS TimeStream,,,CMD-INSP-STR.png,4,keyword_match_STR,low
+Cypress,,,CSAT Analyst Architecture.pptx,1,keyword_match_Architecture,low
+AWS TimeStream,,,CSPPMCP-STR.drawio.png,2,keyword_match_STR,low
+Cypress,,,Cision AI_ Brandwatch - Conceptual Architecture.docx,8,keyword_match_Architecture,low
+Cypress,,,Cision AI_ Brandwatch - Conceptual Architecture_ Updated.docx,4,keyword_match_Architecture,low
+Apache Directory Studio (Software),,,Copy of How to Complete Your Software Request Form.png,38,keyword_match_Form,low
+Cypress,,,CreativeCloudSecurityAndArchitecture.pdf,111,keyword_match_Architecture,low
+Cypress,,,DBT_Architecture.pptx,1,keyword_match_Architecture,low
+NetIM & NetProfiler,,,DFSMSrmm Environment Diagram.pdf,2,keyword_match_Diagram,low
+Cypress,,,DL IROP AI POC Architecture for STR Review v2.0.png,2,keyword_match_Architecture,low
+Cypress,,,DL IROP AI POC Architecture for STR Review.png,2,keyword_match_Architecture,low
+AWS TimeStream,,,DLV KM STR.pdf,2,keyword_match_STR,low
+Cypress,,,Data Cloud Architecture and Engagement Entity Relationship Model.png,2,keyword_match_Architecture,low
+Cypress,,,Data Cloud Architecture.pdf,2,keyword_match_Architecture,low
+Cypress,,,DataPlatformSolutionDesignMC.jpg,1,keyword_match_Design,low
+Cypress,,,Database Chatbot_AgentCore Architecture.png,2,keyword_match_Architecture,low
+Cypress,,,Decagon_Architecture_InApp.drawio,2,keyword_match_Architecture,low
+Cypress,,,Decagon_Architecture_InApp.jpg,2,keyword_match_Architecture,low
+Cypress,,,Decagon_Architecture_InApp.png,4,keyword_match_Architecture,low
+Cypress,,,Delta AI POC - Architecture.png,2,keyword_match_Architecture,low
+Cypress,,,Delta Data Flow Architecture Diagram.pdf,2,keyword_match_Architecture,low
+NetIM & NetProfiler,,,Delta Pro Enhancement Design Diagram.docx,1,keyword_match_Diagram,low
+Cypress,,,Delta–Blanchard–Intrepid_Architecture.pdf,2,keyword_match_Architecture,low
+NetIM & NetProfiler,,,Einstein STO User Process Diagram_2025-05-20_12-37-41.png,1,keyword_match_Diagram,low
+Cypress,,,Enterprise Agentic Architecture_2025-10-27_15-08-08.png,2,keyword_match_Architecture,low
+Cypress,,,Enterprise Level QuickView-Architecture.png,2,keyword_match_Architecture,low
+Cypress,,,FDM Design Doc.docx,2,keyword_match_Design,low
+Cypress,,,Fees-and-Entitlement-Engine-Deployment-Architecture.png,2,keyword_match_Architecture,low
+NetIM & NetProfiler,,,Flight Booking Diagram.docx,1,keyword_match_Diagram,low
+Cypress,,,Gen AI Patterns - RAG Bot Architecture.png,2,keyword_match_Architecture,low
+Cypress,,,Gen AI Patterns - Summarization Architecture.png,2,keyword_match_Architecture,low
+Cypress,,,Kiro IDE Architecture.docx,1,keyword_match_Architecture,low
+Cypress,,,MCP Architecture.png,2,keyword_match_Architecture,low
+Cypress,,,MCP General Architecture.png,63,keyword_match_Architecture,low
+NetIM & NetProfiler,,,Network Guidance AI Agent Diagram.png,2,keyword_match_Diagram,low
+Cypress,,,PBS AWS Architecture v2.0 XL size.drawio.pdf,2,keyword_match_Architecture,low
+Cypress,,,Payment_Local_MCP_Architecture.png,2,keyword_match_Architecture,low
+NetIM & NetProfiler,,,Planete Online Diagram.docx,2,keyword_match_Diagram,low
+NetIM & NetProfiler,,,Poppulo Design Diagram.docx,2,keyword_match_Diagram,low
+NetIM & NetProfiler,,,ProfiCAD Design Diagram.pdf,2,keyword_match_Diagram,low
+Cypress,,,QM Architecture Diagram.pdf,2,keyword_match_Architecture,low
+Cypress,,,QM Architecture Diagram.png,2,keyword_match_Architecture,low
+Cypress,,,QM Architecture Diagram_1.jpg,2,keyword_match_Architecture,low
+Cypress,,,QM Architecture Diagram_2.jpg,2,keyword_match_Architecture,low
+Cypress,,,QV AI Architecture.png,2,keyword_match_Architecture,low
+Cypress,,,Quantum Design.docx,2,keyword_match_Design,low
+AWS TimeStream,,,RIA_ARCH_STR.png,2,keyword_match_STR,low
+Cypress,,,ROD-UI-arch-ROD-Architecture.drawio.png,8,keyword_match_Architecture,low
+Cypress,,,ROD-UI-arch-UI-Interaction-Architecture.drawio.png,2,keyword_match_Architecture,low
+AWS TimeStream,,,Reliasoft STR diagram.png,2,keyword_match_STR,low
+NetIM & NetProfiler,,,Resops Design Diagram.docx,1,keyword_match_Diagram,low
+NetIM & NetProfiler,,,STR - PMO 667 WellSaid New Product Request Form V3.0 Diagram.png,1,keyword_match_Diagram,low
+NetIM & NetProfiler,,,STR Diagram-AutoIt 1.png,2,keyword_match_Diagram,low
+NetIM & NetProfiler,,,STR Diagram.docx,12,keyword_match_Diagram,low
+NetIM & NetProfiler,,,STR Diagram.png,8,keyword_match_Diagram,low
+AWS TimeStream,,,STR Epiq Conceptual.pdf,2,keyword_match_STR,low
+AWS TimeStream,,,STR Lineal Conceptual.pdf,2,keyword_match_STR,low
+AWS TimeStream,,,STR MFA Epiq.drawio,2,keyword_match_STR,low
+AWS TimeStream,,,STR MFA Lineal.drawio,8,keyword_match_STR,low
+AWS TimeStream,,,STR MFA TransPerfect.drawio,2,keyword_match_STR,low
+AWS TimeStream,,,STR SSO Lyft Conceptual.png,2,keyword_match_STR,low
+AWS TimeStream,,,STR SSO Lyft.drawio,2,keyword_match_STR,low
+AWS TimeStream,,,STR SSO Lyft.png,6,keyword_match_STR,low
+AWS TimeStream,,,STR TransPerfect Conceptual.pdf,2,keyword_match_STR,low
+NetIM & NetProfiler,,,STR-DesignDiagramOverview.png,2,keyword_match_Diagram,low
+NetIM & NetProfiler,,,TrackJS-AI-Debugger-Diagram.png,2,keyword_match_Diagram,low
+Cypress,,,Updated Architecture 1.0.0.png,1,keyword_match_Architecture,low
+Cypress,,,VS Vred Synchrony Cobrand Card Detailed Design Doc.2 (1).docx,2,keyword_match_Design,low
+Cypress,,,Venafi -ServiceNow Change Request Workflow Driver Design.pdf,1,keyword_match_Design,low
+NetIM & NetProfiler,,,Voice of the Customer Design Diagram.docx,1,keyword_match_Diagram,low
+AWS TimeStream,,,WIZMCP-STR.jpg,2,keyword_match_STR,low
+Cypress,,,ZN_HL_Architecture.jpg,2,keyword_match_Architecture,low
+Cypress,,,ZWQUIK Design.png,2,keyword_match_Design,low
+NetIM & NetProfiler,,,k3s_Diagram.png,2,keyword_match_Diagram,low
+AWS TimeStream,,,s3-tables-STR-diagrams.docx,2,keyword_match_STR,low

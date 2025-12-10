@@ -1,0 +1,93 @@
+STR DOCUMENT LIBRARY TO SHAREPOINT MAPPING SUMMARY
+====================================================================================================
+
+OVERVIEW:
+  Total OneDrive Documents: 1652
+  Unique Document Names: 448
+  Total STR Records in SharePoint: 1415
+
+MATCHING RESULTS:
+  ✓ Exact Matches (Product name in document): 130
+  ◐ Partial/Keyword Matches: 91
+  ✗ Unmatched Documents: 227
+  ✗ Unmatched Products (no supporting docs): 1334
+
+MAPPING STRATEGY:
+  1. Exact Match: Product name appears in document filename
+  2. Partial Match: Document contains architecture/diagram keywords
+  3. Unmatched: No clear correlation found
+
+HOW TO USE THESE FILES:
+  1. STR_Document_to_Product_Mapping.csv - searchable mapping spreadsheet
+  2. document_product_mapping.json - structured data for programmatic access
+  3. Unmatched documents may need manual review for relevance
+
+NEXT STEPS:
+  1. Review partial matches and unmatched products
+  2. Use the document names to find related files in OneDrive
+  3. Check the 'Notes' field in CSV for additional context
+  4. Consider metadata (dates, requestor) for validation
+
+
+SAMPLE UNMATCHED PRODUCTS (first 20 - may need document review):
+----------------------------------------------------------------------------------------------------
+
+  ** Test Product Test Product **
+    Row: 1400 | Status: Pending | Requestor: Brashear, Joseph
+
+  0554 0196 Rechargeable batteries (300/400/650/950)
+    Row: 724 | Status: Approved | Requestor: Rhonda Kurtz
+
+  0554 1096 International mains unit 100-240V for mains operation or battery charging in instruments
+    Row: 721 | Status: Approved | Requestor: Rhonda Kurtz
+
+  0572 0160 Saveris Base, radio frequency 2,4 GHz
+    Row: 725 | Status: Approved | Requestor: Rhonda Kurtz
+
+  0572 0180 Saveris Database Software, USB
+    Row: 723 | Status: Approved | Requestor: Rhonda Kurtz
+
+  0572 6192 Saveris Humidity Probe H2E 2%rF, with display, ethernet
+    Row: 722 | Status: Approved | Requestor: Rhonda Kurtz
+
+  2012 Dangerous Goods Regulations – 53rd Edition
+    Row: 583 | Status: Approved | Requestor: Theresa Hendrick
+
+  3D SketchUp Pro
+    Row: 398 | Status: Approved | Requestor: Sharon Grunert
+
+  3M Detection Management Software (3M DMS
+    Row: 482 | Status: Approved | Requestor: Sharon Grunert
+
+  3M E-A-Rfit Validatin System (Earfit)
+    Row: 532 | Status: Approved | Requestor: Sharon Grunert
+
+  7-Zip
+    Row: 514 | Status: Approved | Requestor: Dawn Garlough
+
+  803 Server and Client
+    Row: 363 | Status: Approved | Requestor: Nichola Michalowske
+
+  8170 Scanners
+    Row: 88 | Status: Approved | Requestor: Ghorpade, Krishna
+
+  A Cloud Guru
+    Row: 38 | Status: Approved | Requestor: Tomko, Andrew J
+
+  A10 Control
+    Row: 1262 | Status: Pending | Requestor: Schripsema, Kraig
+
+  A350 FMST
+    Row: 188 | Status: Approved | Requestor: Tammi Miller
+
+  A350 SATCOM ORT Tool
+    Row: 295 | Status: Approved | Requestor: Derek Schramm
+
+  AC Weigh
+    Row: 905 | Status: Approved | Requestor: Hasberger, Brian
+
+  ACL - Audit Command Language Desktop
+    Row: 611 | Status: Approved | Requestor: Thomas Hicks
+
+  AFGROW
+    Row: 860 | Status: Approved | Requestor: Peterson, Heidi
