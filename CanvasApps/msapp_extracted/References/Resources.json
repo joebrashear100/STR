@@ -1,0 +1,76 @@
+{
+  "Resources": [
+    {
+      "Name": "SampleImage",
+      "Schema": "i",
+      "IsSampleData": true,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "/ctrllib/image/images/SampleImage.svg",
+      "Path": "/ctrllib/image/images/SampleImage.svg",
+      "Content": "Image",
+      "ResourceKind": "Uri",
+      "RootPath": "ms-appx:///ctrllib/image/images/SampleImage.svg"
+    },
+    {
+      "Name": "1",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "347e319a-3ede-4dd9-a0d3-fa97fafa32b1.png",
+      "Path": "Assets\\Images\\347e319a-3ede-4dd9-a0d3-fa97fafa32b1.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil109eus.blob.core.windows.net/64c190d7-097e-4591-abc7-1dd3352100fe-1/resource/MzQ3ZTMxOWEtM2VkZS00ZGQ5LWEwZDMtZmE5N2ZhZmEzMmIx.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2025-11-19T19%3A14%3A06Z&ske=2025-11-20T19%3A29%3A06Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2025-11-20T19%3A29%3A06Z&sr=b&sp=r&sig=iR2HHeSh5t%2BrByJJ2GJFzZM3vTE%2FV%2BWq0KJeu%2F4%2F8Z0%3D"
+    },
+    {
+      "Name": "2",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "bac70d0e-89cd-4a8c-9f4a-334192c69c8f.png",
+      "Path": "Assets\\Images\\bac70d0e-89cd-4a8c-9f4a-334192c69c8f.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil109eus.blob.core.windows.net/64c190d7-097e-4591-abc7-1dd3352100fe-1/resource/YmFjNzBkMGUtODljZC00YThjLTlmNGEtMzM0MTkyYzY5Yzhm.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2025-11-19T19%3A14%3A06Z&ske=2025-11-20T19%3A29%3A06Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2025-11-20T19%3A29%3A06Z&sr=b&sp=r&sig=ZagwzPRlK6la0axmvDjyIUnIhCweUXpz7yEhobRLjAU%3D"
+    },
+    {
+      "Name": "3",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "a6147a5f-7403-4ebb-8360-aa9efa0c12fd.png",
+      "Path": "Assets\\Images\\a6147a5f-7403-4ebb-8360-aa9efa0c12fd.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil109eus.blob.core.windows.net/64c190d7-097e-4591-abc7-1dd3352100fe-1/resource/YTYxNDdhNWYtNzQwMy00ZWJiLTgzNjAtYWE5ZWZhMGMxMmZk.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2025-11-19T19%3A14%3A06Z&ske=2025-11-20T19%3A29%3A06Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2025-11-20T19%3A29%3A06Z&sr=b&sp=r&sig=77LzaVuYZ4%2Bq6AFduGNfXF13DyXInRGfWnvmhCU169A%3D"
+    },
+    {
+      "Name": "delta_blue_r (1)",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "d7837d6a-8bf7-47f6-9899-ec9248f9c41f.png",
+      "Path": "Assets\\Images\\d7837d6a-8bf7-47f6-9899-ec9248f9c41f.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil109eus.blob.core.windows.net/64c190d7-097e-4591-abc7-1dd3352100fe-1/resource/ZDc4MzdkNmEtOGJmNy00N2Y2LTk4OTktZWM5MjQ4ZjljNDFm.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2025-11-19T19%3A14%3A06Z&ske=2025-11-20T19%3A29%3A06Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2025-11-20T19%3A29%3A06Z&sr=b&sp=r&sig=ysTjFjp%2FMVpE0r8qmPXzDPlkZCRShMlIzP6EKT2MzTE%3D"
+    },
+    {
+      "Name": "How to Complete Your Software Request Form (7)",
+      "Schema": "i",
+      "IsSampleData": false,
+      "IsWritable": false,
+      "Type": "ResourceInfo",
+      "FileName": "c0f96ec4-8465-43d9-b548-ed469d3bcaaa.png",
+      "Path": "Assets\\Images\\c0f96ec4-8465-43d9-b548-ed469d3bcaaa.png",
+      "Content": "Image",
+      "ResourceKind": "LocalFile",
+      "RootPath": "https://dsprdil109eus.blob.core.windows.net/64c190d7-097e-4591-abc7-1dd3352100fe-1/resource/YzBmOTZlYzQtODQ2NS00M2Q5LWI1NDgtZWQ0NjlkM2JjYWFh.png?skoid=58690ece-ec83-4ce2-9ce8-883d4d6a54ee&sktid=975f013f-7f24-47e8-a7d3-abc4752bf346&skt=2025-11-19T19%3A14%3A06Z&ske=2025-11-20T19%3A29%3A06Z&sks=b&skv=2023-01-03&sv=2023-01-03&spr=https&se=2025-11-20T19%3A29%3A06Z&sr=b&sp=r&sig=nBk1aZHFtElqi5ijVyFehBvAdyLIOESA1CH5f28oPi4%3D"
+    }
+  ]
+}

@@ -1,0 +1,522 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+Screens:
+  MainScreen:
+    Properties:
+      Fill: =RGBA(255, 255, 255, 1)
+      LoadingSpinnerColor: =RGBA(0, 120, 212, 1)
+    Children:
+      - ScreenContainer3:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(245, 245, 245, 1)
+            Height: =Parent.Height
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutGap: =16
+            LayoutOverflowY: =LayoutOverflow.Scroll
+            PaddingBottom: =16
+            PaddingLeft: =16
+            PaddingRight: =16
+            PaddingTop: =16
+            Width: =Parent.Width
+          Children:
+            - HeaderContainer2:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =1
+                  Fill: =RGBA(255, 255, 255, 1)
+                  FillPortions: =0
+                  Height: =75
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  RadiusBottomLeft: =8
+                  RadiusBottomRight: =8
+                  RadiusTopLeft: =8
+                  RadiusTopRight: =8
+                Children:
+                  - Header1_3:
+                      Control: Header@0.0.44
+                      Properties:
+                        BasePaletteColor: =RGBA(255, 255, 255, 1)
+                        BorderColor: =RGBA(45, 128, 40, 1)
+                        BorderThickness: =0
+                        FontColor: =RGBA(9, 33, 98, 1)
+                        Logo: ='delta_blue_r (1)'
+                        Style: ='Header.Style'.Neutral
+                        Title: ="Software Technology Request Intake"
+            - Container20:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  DropShadow: =DropShadow.Regular
+                  FillPortions: =0
+                  Height: =Min(STRInfoTxt.Height, 200)
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                Children:
+                  - STRInfoTxt:
+                      Control: HtmlViewer@2.1.0
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Center
+                        AutoHeight: =true
+                        BorderColor: =RGBA(9, 33, 98, 1)
+                        BorderStyle: =BorderStyle.Solid
+                        DisabledBorderColor: =RGBA(161, 159, 157, 1)
+                        Fill: =Color.White
+                        Font: =Font.'Segoe UI'
+                        HtmlText: |-
+                          =
+                          "<div style= 'text-align:left'><i>The Software Technology Request (STR) is required for all new products being introduced to Delta, Endeavor or AIR4 environments, even if the services are external and do not reside on the Delta internal network.
+
+                          The STR is a new product request workflow, during which the STR Committee reviews the new product request, design diagram, security protocols, risk evaluation, and to minimize duplicative products. This review and approval are required prior to conducting POCs, Pilots, or moving forward with Production implementation.
+
+                          The STR form is required to be submitted by an IT team member and approved by the IT Sr. Portfolio Architect. <a href=""https://deltaairlines.sharepoint.com/sites/ITS-RAISE/SitePages/STRC.aspx?OR=Teams-HL&CT=1733152273085"" style=""color:blue; text-decoration:underline;"" target=""_blank"">Click here to learn more.</a> <a href=""https://apps.powerapps.com/play/e/8d2d3644-4f63-e487-9ed2-cfc8ba25b818/a/dc156349-6155-4242-bcf0-5eecf550f693?tenantId=45e6435d-dc1c-42e3-89be-e72e6c8f072d&hint=814eea3b-fe1d-4d4f-9436-a1bb087b63d2&sourcetime=1747166987175"" style=""color:blue; text-decoration:underline;"" target=""_blank"">Link to STR Power App.</a>"
+                        PaddingBottom: =10
+                        PaddingLeft: =10
+                        PaddingRight: =10
+                        PaddingTop: =10
+                        Size: =12
+                        Width: =Parent.Width
+            - MainContainer2:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  DropShadow: =DropShadow.None
+                  Fill: =RGBA(245, 245, 245, 1)
+                  FillPortions: =3
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Horizontal
+                  LayoutGap: =16
+                  LayoutMinHeight: =300
+                  LayoutOverflowY: =LayoutOverflow.Scroll
+                  LayoutWrap: =true
+                  PaddingBottom: =2
+                  PaddingLeft: =10
+                  PaddingRight: =10
+                  PaddingTop: =2
+                  RadiusBottomLeft: =0
+                  RadiusBottomRight: =0
+                  RadiusTopLeft: =0
+                  RadiusTopRight: =0
+                Children:
+                  - Container32:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        BorderColor: =RGBA(9, 33, 98, 1)
+                        DropShadow: =DropShadow.Semibold
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =If(App.Width >= 1320, Parent.Height - Parent.PaddingTop - Parent.PaddingBottom - 10, 350)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =5
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =Parent.LayoutMinHeight -20
+                        LayoutMinWidth: =If(App.Width <= 1320, 300, Min(Parent.Width/3, 400))
+                        PaddingBottom: =10
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        PaddingTop: =10
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                      Children:
+                        - ImageContainer32:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              DropShadow: =DropShadow.None
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutGap: =5
+                              LayoutJustifyContent: =LayoutJustifyContent.End
+                              LayoutMinWidth: =Container32.Width
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Width: =Parent.Width
+                            Children:
+                              - Image32:
+                                  Control: Image@2.2.3
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    BorderThickness: =2
+                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                                    DisabledFill: =RGBA(0, 0, 0, 0)
+                                    FocusedBorderThickness: =4
+                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    Image: ='1'
+                                    ImagePosition: =ImagePosition.Fill
+                                    OnSelect: =Navigate(STRFormScreen)
+                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                        - TitleContainer32:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              DropShadow: =DropShadow.None
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutMinWidth: =Container32.Width
+                              PaddingTop: =20
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Width: =Parent.Width
+                            Children:
+                              - FeatureItemButton32:
+                                  Control: Button@0.0.45
+                                  Properties:
+                                    AccessibleLabel: ="Featured item button"
+                                    Appearance: ='ButtonCanvas.Appearance'.Transparent
+                                    FontSize: =26
+                                    FontWeight: =FontWeight.Bold
+                                    LayoutMinWidth: =Parent.Width
+                                    OnSelect: |+
+                                      =Navigate(STRFormScreen);
+                                    Text: ="Request Form"
+                                    Width: =Parent.Width
+                              - DescriptionText32:
+                                  Control: Text@0.0.51
+                                  Properties:
+                                    Align: ='TextCanvas.Align'.Center
+                                    AutoHeight: =true
+                                    FillPortions: =1
+                                    FontItalic: =true
+                                    Height: =Len(DescriptionText32.Text)
+                                    LayoutMinWidth: =Parent.Width
+                                    PaddingBottom: =10
+                                    PaddingLeft: =10
+                                    PaddingRight: =10
+                                    PaddingTop: =10
+                                    Text: ="Fill in the required information to submit a new request. Please provide all necessary details to help expedite the approval process."
+                                    VerticalAlign: =VerticalAlign.Top
+                                    Width: =Parent.Width
+                  - Container22:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        BorderColor: =RGBA(9, 33, 98, 1)
+                        DropShadow: =DropShadow.Semibold
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =If(App.Width >= 1320, Parent.Height - Parent.PaddingTop - Parent.PaddingBottom - 10, 350)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =5
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =Parent.LayoutMinHeight
+                        LayoutMinWidth: =If(App.Width <= 1320, 300, Min(Parent.Width/3, 400))
+                        PaddingBottom: =10
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        PaddingTop: =10
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                      Children:
+                        - ImageContainer22:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              DropShadow: =DropShadow.None
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutGap: =5
+                              LayoutJustifyContent: =LayoutJustifyContent.End
+                              LayoutMinWidth: =Container22.Width
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Width: =Parent.Width
+                            Children:
+                              - Image4:
+                                  Control: Image@2.2.3
+                                  Properties:
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    BorderThickness: =2
+                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                                    DisabledFill: =RGBA(0, 0, 0, 0)
+                                    FocusedBorderThickness: =4
+                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    Image: ='2'
+                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                        - TitleContainer22:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              DropShadow: =DropShadow.None
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutMinWidth: =Container22.Width
+                              PaddingTop: =20
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Width: =Parent.Width
+                            Children:
+                              - FeatureItemButton22:
+                                  Control: Button@0.0.45
+                                  Properties:
+                                    AccessibleLabel: ="Featured item button"
+                                    Appearance: ='ButtonCanvas.Appearance'.Transparent
+                                    FontSize: =26
+                                    FontWeight: =FontWeight.Bold
+                                    LayoutMinWidth: =Parent.Width
+                                    OnSelect: |+
+                                      =Navigate(RequestHistoryScreen);
+                                    Text: ="Request History"
+                                    Width: =Parent.Width
+                              - DescriptionText22:
+                                  Control: Text@0.0.51
+                                  Properties:
+                                    Align: ='TextCanvas.Align'.Center
+                                    AutoHeight: =true
+                                    FillPortions: =1
+                                    FontItalic: =true
+                                    LayoutMinWidth: =Parent.Width
+                                    PaddingBottom: =10
+                                    PaddingLeft: =10
+                                    PaddingRight: =10
+                                    PaddingTop: =10
+                                    Text: ="View the status and details of all your previous requests. Track submitted, pending, and completed requests easily in one place."
+                                    VerticalAlign: =VerticalAlign.Top
+                                    Width: =Parent.Width
+                  - Container2:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        BorderColor: =RGBA(9, 33, 98, 1)
+                        DropShadow: =DropShadow.Semibold
+                        Fill: =RGBA(255, 255, 255, 1)
+                        Height: =If(App.Width >= 1320, Parent.Height - Parent.PaddingTop - Parent.PaddingBottom - 10, 350)
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Vertical
+                        LayoutGap: =5
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                        LayoutMinHeight: =Parent.LayoutMinHeight
+                        LayoutMinWidth: =If(App.Width <= 1320, 300, Min(Parent.Width/3, 400))
+                        PaddingBottom: =10
+                        PaddingLeft: =5
+                        PaddingRight: =5
+                        PaddingTop: =10
+                        RadiusBottomLeft: =5
+                        RadiusBottomRight: =5
+                        RadiusTopLeft: =5
+                        RadiusTopRight: =5
+                        Visible: |-
+                          =If(
+                              Office365Users.MyProfile().Mail in "stuart.smith@delta.com, brett.valentine@delta.com, bret.martin@delta.com, kimberly.baima@delta.com, anthony.rollins@delta.com, matthew.penna@delta.com, joseph.brashear@delta.com, julie.miller00@delta.com",
+                              true,
+                              false
+                          )
+                      Children:
+                        - ImageContainer2:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              DropShadow: =DropShadow.None
+                              LayoutAlignItems: =LayoutAlignItems.Center
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutGap: =5
+                              LayoutJustifyContent: =LayoutJustifyContent.End
+                              LayoutMinWidth: =Container2.Width
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Width: =Parent.Width
+                            Children:
+                              - Image2:
+                                  Control: Image@2.2.3
+                                  Properties:
+                                    AlignInContainer: =AlignInContainer.Center
+                                    BorderColor: =RGBA(0, 0, 0, 0)
+                                    BorderStyle: =BorderStyle.None
+                                    BorderThickness: =2
+                                    DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                                    DisabledFill: =RGBA(0, 0, 0, 0)
+                                    FocusedBorderThickness: =4
+                                    HoverBorderColor: =RGBA(0, 0, 0, 0)
+                                    HoverFill: =RGBA(0, 0, 0, 0)
+                                    Image: ='3'
+                                    OnSelect: =Navigate(RequestApprovalScreen)
+                                    PressedBorderColor: =RGBA(0, 0, 0, 0)
+                                    PressedFill: =RGBA(0, 0, 0, 0)
+                        - TitleContainer2:
+                            Control: GroupContainer@1.3.0
+                            Variant: AutoLayout
+                            Properties:
+                              AlignInContainer: =AlignInContainer.Center
+                              DropShadow: =DropShadow.None
+                              LayoutDirection: =LayoutDirection.Vertical
+                              LayoutMinWidth: =Container2.Width
+                              PaddingTop: =20
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Width: =Parent.Width
+                            Children:
+                              - FeatureItemButton2:
+                                  Control: Button@0.0.45
+                                  Properties:
+                                    AccessibleLabel: ="Featured item button"
+                                    Appearance: ='ButtonCanvas.Appearance'.Transparent
+                                    FontSize: =26
+                                    FontWeight: =FontWeight.Bold
+                                    LayoutMinWidth: =Parent.Width
+                                    OnSelect: |+
+                                      =Navigate(RequestApprovalScreen);
+                                    Text: ="Approver"
+                                    Width: =Parent.Width
+                              - DescriptionText2:
+                                  Control: Text@0.0.51
+                                  Properties:
+                                    Align: ='TextCanvas.Align'.Center
+                                    AutoHeight: =true
+                                    FillPortions: =1
+                                    FontItalic: =true
+                                    Height: =Len(DescriptionText2.Text)
+                                    LayoutMinWidth: =Parent.Width
+                                    PaddingBottom: =10
+                                    PaddingLeft: =10
+                                    PaddingRight: =10
+                                    PaddingTop: =10
+                                    Text: ="Review and take action on pending requests. Approve or deny submissions based on the provided information to ensure efficient workflow management."
+                                    VerticalAlign: =VerticalAlign.Top
+                                    Width: =Parent.Width
+            - VersionNum_1:
+                Control: Text@0.0.51
+                Properties:
+                  Align: ='TextCanvas.Align'.End
+                  FontItalic: =true
+                  Size: =11
+                  Text: ="Version 1.0.0.68"
+                  VerticalAlign: =VerticalAlign.Middle
+                  Width: =Parent.Width - 30
+                  X: =1200
+                  Y: =736
+      - PopupContainer_2:
+          Control: GroupContainer@1.3.0
+          Variant: AutoLayout
+          Properties:
+            Fill: =RGBA(79, 90, 94, 0.5)
+            Height: =Parent.Height
+            LayoutAlignItems: =LayoutAlignItems.Center
+            LayoutDirection: =LayoutDirection.Vertical
+            LayoutJustifyContent: =LayoutJustifyContent.Center
+            Visible: =enablePopupB //enablePopupB && !enablePopupB
+            Width: =Parent.Width
+          Children:
+            - Container12_2:
+                Control: GroupContainer@1.3.0
+                Variant: AutoLayout
+                Properties:
+                  AlignInContainer: =AlignInContainer.SetByContainer
+                  BorderColor: =RGBA(9, 33, 98, 1)
+                  BorderThickness: =1
+                  DropShadow: =DropShadow.ExtraBold
+                  Fill: =Color.White
+                  FillPortions: =0
+                  Height: =Parent.Height * .9
+                  LayoutAlignItems: =LayoutAlignItems.Center
+                  LayoutDirection: =LayoutDirection.Vertical
+                  LayoutJustifyContent: =LayoutJustifyContent.Center
+                  PaddingBottom: =10
+                  PaddingLeft: =10
+                  PaddingRight: =10
+                  PaddingTop: =10
+                  Width: =Parent.Width * .9
+                Children:
+                  - Image5:
+                      Control: Image@2.2.3
+                      Properties:
+                        AlignInContainer: =AlignInContainer.Stretch
+                        BorderColor: =RGBA(0, 0, 0, 0)
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =2
+                        DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                        DisabledFill: =RGBA(0, 0, 0, 0)
+                        FillPortions: =1
+                        FocusedBorderThickness: =4
+                        Height: =600
+                        HoverBorderColor: =RGBA(0, 0, 0, 0)
+                        HoverFill: =RGBA(0, 0, 0, 0)
+                        Image: ='How to Complete Your Software Request Form (7)'
+                        OnSelect: =Set(enablePopupB, false);
+                        PressedBorderColor: =RGBA(0, 0, 0, 0)
+                        PressedFill: =RGBA(0, 0, 0, 0)
+                        Visible: =true //!PlayWalkthrough
+                        Width: =1100
+                  - Container23:
+                      Control: GroupContainer@1.3.0
+                      Variant: AutoLayout
+                      Properties:
+                        DropShadow: =DropShadow.None
+                        FillPortions: =0
+                        Height: =34
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =30
+                        LayoutJustifyContent: =LayoutJustifyContent.Center
+                      Children:
+                        - ButtonCanvas4_2:
+                            Control: Button@0.0.45
+                            Properties:
+                              Appearance: ='ButtonCanvas.Appearance'.Outline
+                              BorderColor: =RGBA(9, 33, 98, 1)
+                              BorderStyle: =BorderStyle.Solid
+                              BorderThickness: =1
+                              Height: =34
+                              OnSelect: |+
+                                =Set(enablePopupB, false);
+                              Text: ="Get Started"
+                              Width: =Parent.Width / 3
+                              X: =(Parent.Width - Self.Width) / 2
+                              Y: =312
+                        - ButtonCanvas4_4:
+                            Control: Button@0.0.45
+                            Properties:
+                              Appearance: ='ButtonCanvas.Appearance'.Outline
+                              BorderColor: =RGBA(9, 33, 98, 1)
+                              BorderStyle: =BorderStyle.Solid
+                              BorderThickness: =1
+                              Height: =34
+                              OnSelect: |+
+                                =Launch("https://deltaairlines.sharepoint.com/sites/ITS-RAISE/SitePages/Software-Technology-Request-Form-Demo.aspx");
+
+
+                                /*Launch("https://deltaairlines-my.sharepoint.com/:v:/g/personal/kelsey_erickson_delta_com/EfQlhCROGKFLi4z7XxCzo-EB6oOKUBFbVdxF0MzbJRDQqw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=gU98fE");*/
+                                //Set(PlayWalkthrough, true); 
+                                //Set(enablePopupB, false);
+                                //Set(IsAckowB, true);
+                              Text: ="Video Walkthrough"
+                              Width: =Parent.Width / 3
+                              X: =(Parent.Width - Self.Width) / 2
+                              Y: =312

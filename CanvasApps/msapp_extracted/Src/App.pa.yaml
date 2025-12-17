@@ -1,0 +1,124 @@
+# ************************************************************************************************
+# Warning: YAML source code for Canvas Apps should only be used to review changes made within Power Apps Studio and for minor edits (Preview).
+# Use the maker portal to create and edit your Power Apps.
+# 
+# The schema file for Canvas Apps is available at https://go.microsoft.com/fwlink/?linkid=2304907
+# 
+# For more information, visit https://go.microsoft.com/fwlink/?linkid=2292623
+# ************************************************************************************************
+App:
+  Properties:
+    Formulas: |-
+      =BaseInfoRequired = !IsBlank(RequestorNameCombo2.Selected.DisplayName) && !IsBlank(ITManagerCombo.Selected.DisplayName) && !IsBlank(ITPortfolioArchCombo.Selected.DisplayName) && !IsBlank(ProductNameTxtInput.Value);
+      RequiredDraftSubmission = BaseInfoRequired;
+      RequiredSubmission = !IsBlank(ArchDiagramMediaButton.Media) && !IsBlank(ArchRecTxtInpt.Value) && !IsBlank(ProductTypeRadio.Selected.Value) && !IsBlank(RequestTypeRadio.Selected.Value) && !IsBlank(AICombo.Selected)
+          /* && If(
+          !IsBlank(AICombo.Selected),
+          !IsBlank(AIMediaButton.Media),
+          true
+      ) */;
+      NewRequestSubmissionButtonText = If(
+          BaseInfoRequired && RequiredSubmission,
+          "Submit Final Request",
+          "Submit Draft Copy"
+      );
+      ////
+
+      BaseInfoHistory = (!IsBlank(ReqHistoryGallery_2.Selected.'Requestor Name (From IT)') && !IsBlank(ReqHistoryGallery_2.Selected.'IT Manager') && !IsBlank(ReqHistoryGallery_2.Selected.'IT Portfolio Architect')) || (!IsBlank(DataCardValue13_2.Selected.DisplayName) && !IsBlank(DataCardValue31_2.Selected.DisplayName) && !IsBlank(DataCardValue32_2.Selected.DisplayName));
+
+
+      RequiredSubmissionHistory = (!IsBlank(DataCardValue183.Value) && (!IsBlank(LinkCanvas1.URL) Or !IsBlank(ArchDiagramMediaButton_1.FileName)) && (!IsBlank(DataCardValue2.Selected.Value) Or !IsBlank(DataCardValue3.Selected.Value)) && !IsBlank(DataCardValue33_1.Selected.Value) && !IsBlank(DataCardValue34_1.Selected.Value));
+
+
+
+
+      RequestContainerHeaderFontSize = 15;
+      RequestContainerHeaderFont = Font.Lato;
+      RequestContainerHeaderFontWeight = "Bold";
+      RequestContainerHeaderWidth = 300;
+      //RequestorNameContainer.Width;
+      RequestContainerAutoHeight = true;
+      MainContainerChildrenHeight = 85;
+      //RequestContainerHeaderLbl.Height + RequestorNameTxtInpt.Height + 25; 
+      MainContainerChildrenFlexibleHeight = false;
+      defaultSelectedItemHistory = First(ReqHistoryGallery_2.AllItems);
+      defaultSelectedItemApproval = First(ReqHistoryGallery_4.AllItems);
+      itemWidth = (PrdTypeContainer.Width + Container1_6.Width + Container1_7.Width + Container1_5.Width + Container1_8.Width) / 5;
+      itemHeight = (PrdTypeContainer.Height + Container1_6.Height + Container1_7.Height + Container1_5.Height + Container1_8.Height) / 5;
+      itemCount = 5;
+      containerWidth = TopHalfContainer.Width;
+      itemsPerRow = Max(
+          1,
+          RoundDown(
+              containerWidth / (itemWidth + TopHalfContainer.LayoutGap),
+              0
+          )
+      );
+      Form1DefaultRecord = LookUp(
+          'Software Technology Request (STR) Review Log',
+          ID = ReqHistoryGallery_2.Selected.ID
+      );
+      rejectionTextHeight = RejectionHeaderContainer.Height;
+
+      ReqHistory_2Items = SortByColumns(
+          Filter(
+              'Software Technology Request (STR) Review Log',
+
+              // Status filter
+              IsBlank(StatusCombo.Selected.Value) || 'STR Approved'.Value = StatusCombo.Selected.Value,
+
+              // ID filter
+              IsBlank(IDTextInpt.Value) || ID = Value(IDTextInpt.Value),
+
+              // Product Name
+              IsBlank(PrdNameTxtInpt_7.Value) || StartsWith('Product Name', PrdNameTxtInpt_7.Value),
+
+              // Requestor Name
+              IsBlank(ReqNameTxtInpt.Value) || StartsWith('Requestor Name (From IT)'.DisplayName, ReqNameTxtInpt.Value),
+
+              // Architect Name
+              IsBlank(ArchNameTxtInpt.Value) || StartsWith('IT Portfolio Architect'.DisplayName, ArchNameTxtInpt.Value),
+
+              //IsBlank(AIGenAICombo.Selected.Value) || AIGenAICombo.Selected.Value = 'AI / GenAI Technology'.Value,
+
+              // AWS filters (at least one of the AWSComboB or AWSComboB_1 must match)
+              //IsBlank(AWSComboB.Selected.Value) || AWSComboB.Selected.Value in AWS,
+              //IsBlank(AIGenAICombo.Selected.Value) || AIGenAICombo.Selected.Value in 'AI / GenAI Technology'.Value,
+
+              // Date range filter
+              (IsBlank(StartDatePicker.SelectedDate) || Created >= DateValue(StartDatePicker.SelectedDate)) &&
+              (IsBlank(EndDatePicker.SelectedDate) || Created <= DateAdd(DateValue(EndDatePicker.SelectedDate), 1, TimeUnit.Days))
+          ),
+          "ID",
+          SortOrder.Descending
+      );
+    OnError: |-
+      =//Notify("You may have encountered a bug, data has been collected and the development team has been notified. Please continue using the form...");
+      //STR_Error_Notification.Run("<br>Error recorded at " & Now() & " with the following details... " & "<br>User: " & User().Email & "<br>Message: " & FirstError.Message & "<br>Observed: " & FirstError.Observed & "<br>Source: " & FirstError.Source & "<br>Kind: " & FirstError.Kind & "<br>HttpStatusCode: " & FirstError.Details.HttpStatusCode & "<br>HttpResponseCode: " & FirstError.Details.HttpResponse, User().Email);
+
+
+      /*
+      Office365Outlook.SharedMailboxSendEmailV2(
+          "ittechnologygovernance@delta.com",
+          "joseph.brashear@delta.com",
+          "STR ERROR",
+          "<br>Error recorded at " & Now() & " with the following details... " & "<br>User: " & User().Email & "<br>Message: " & FirstError.Message & "<br>Observed: " & FirstError.Observed & "<br>Source: " & FirstError.Source & "<br>Kind: " & FirstError.Kind & "<br>HttpStatusCode: " & FirstError.Details.HttpStatusCode & "<br>HttpResponseCode: " & FirstError.Details.HttpResponse
+      )
+      */
+    OnStart: |+
+      =Set(
+          enablePopupB,
+          true
+      );
+
+    StartScreen: |
+      =Switch(
+          Param("screen"),
+          "RequestApprovalScreen",
+          RequestApprovalScreen,
+          "RequestHistoryScreen",
+          RequestHistoryScreen,
+          Blank(),
+          MainScreen
+      )
+    Theme: =PowerAppsTheme
