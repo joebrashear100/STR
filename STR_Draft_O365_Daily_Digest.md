@@ -8,8 +8,8 @@
 | Field | Value |
 |-------|-------|
 | **Product Name** | O365 Daily Digest |
-| **Requestor Name (From IT)** | [Enter Your Name] |
-| **Date Requested** | [Current Date] |
+| **Requestor Name (From IT)** | Brashear, Joseph |
+| **Date Requested** | December 19, 2025 |
 | **Domain Name** | IT |
 | **Business Unit** | IT / Enterprise Technology |
 | **Restricted to Domain/Business Unit** | No |
@@ -30,8 +30,9 @@
 
 | Field | Value |
 |-------|-------|
-| **IT Manager** | [Enter IT Manager Name] |
-| **IT Portfolio Architect** | [Enter IT Portfolio Architect Name] |
+| **IT Manager** | Riley, Wykita |
+| **IT Portfolio Architect** | Yu, Barry |
+| **Supply Chain Contact** | N/A |
 
 ---
 
@@ -41,8 +42,11 @@
 |-------|-------|
 | **Product Type** | Internal Development |
 | **Is Product Funded?** | Yes |
-| **Request Type** | Permanent Production |
-| **Criticality Tier** | Tier 3 (Low) |
+| **Request Type** | POC/Pilot |
+| **POC/Pilot Duration** | 90 Days |
+| **POC/Pilot End Date** | March 19, 2026 |
+| **Criticality Tier** | Tier 4 (Administrative) |
+| **Scope** | Personal use across the organization |
 
 #### Description
 O365 Daily Digest is a Power Platform automation solution that mines and summarizes daily communications from Microsoft Outlook emails and Microsoft Teams chats. The solution uses AI Builder with GPT models to analyze and consolidate communications into a single, executive-ready daily digest email. Version 1.2.0.7 includes enhanced error handling for external meeting chats.
@@ -254,10 +258,77 @@ Continue manual review of emails and Teams messages, resulting in increased time
 
 ### ATTACHMENTS CHECKLIST
 
-- [ ] Architecture Diagram
+- [x] Architecture Diagram (See: O365_Daily_Digest_Architecture.md)
 - [ ] Privacy Impact Assessment (PIA)
 - [ ] Security Vendor Risk Assessment (if applicable)
 - [ ] Business Case Justification
+
+---
+
+### ARCHITECTURE DIAGRAM
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      O365 DAILY DIGEST - HIGH LEVEL ARCHITECTURE            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────┐                                         ┌─────────────┐
+    │   OUTLOOK   │                                         │   TEAMS     │
+    │   MAILBOX   │                                         │   CHATS     │
+    └──────┬──────┘                                         └──────┬──────┘
+           │                                                       │
+           │ Get Emails (24hr)                    Get Chats (24hr) │
+           │                                                       │
+           ▼                                                       ▼
+    ┌──────────────────────────────────────────────────────────────────────┐
+    │                     POWER AUTOMATE CLOUD FLOW                        │
+    │                     (Scheduled Daily 5PM UTC)                        │
+    │  ┌────────────────┐                        ┌────────────────┐        │
+    │  │ Process Emails │                        │ Process Chats  │        │
+    │  └───────┬────────┘                        └───────┬────────┘        │
+    │          │                                         │                 │
+    │          ▼                                         ▼                 │
+    │  ┌────────────────┐                        ┌────────────────┐        │
+    │  │  AI BUILDER    │                        │  AI BUILDER    │        │
+    │  │ Summarize      │                        │ Summarize      │        │
+    │  │ Emails         │                        │ Teams          │        │
+    │  │ (GPT-4.1 Mini) │                        │ (Reasoning)    │        │
+    │  └───────┬────────┘                        └───────┬────────┘        │
+    │          │                                         │                 │
+    │          └─────────────────┬───────────────────────┘                 │
+    │                            ▼                                         │
+    │                   ┌────────────────┐                                 │
+    │                   │  AI BUILDER    │                                 │
+    │                   │ Combine &      │                                 │
+    │                   │ Summarize      │                                 │
+    │                   │ (GPT-4.1 Mini) │                                 │
+    │                   └───────┬────────┘                                 │
+    │                           │                                          │
+    │                           ▼                                          │
+    │                   ┌────────────────┐                                 │
+    │                   │ Format HTML &  │                                 │
+    │                   │ Send Email     │                                 │
+    │                   └────────────────┘                                 │
+    └──────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+                       ┌────────────────┐
+                       │  DAILY DIGEST  │
+                       │    EMAIL       │
+                       │                │
+                       │ - Overview     │
+                       │ - Actions      │
+                       │ - Tech Notes   │
+                       │ - Collab       │
+                       │ - Announce     │
+                       │ - Tomorrow     │
+                       └────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ SECURITY: All data stays within Microsoft 365 tenant. User accesses only   │
+│ their own mailbox and chats. Authentication via M365 SSO/MFA.              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
