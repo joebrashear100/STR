@@ -1,0 +1,14 @@
+<environmentvariabledefinition schemaname="cr2de_ScheduleTimeUTC">
+  <defaultvalue>2025-10-10T21:00:00.000Z</defaultvalue>
+  <description default="Only provide time values following the same format as the default value ">
+    <label description="Only provide time values following the same format as the default value " languagecode="1033" />
+  </description>
+  <displayname default="ScheduleTimeUTC">
+    <label description="ScheduleTimeUTC" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.2.0.6</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000000</type>
+</environmentvariabledefinition>
