@@ -1,0 +1,11 @@
+<environmentvariabledefinition schemaname="cr2de_IncludeTeams">
+  <defaultvalue>yes</defaultvalue>
+  <displayname default="IncludeTeams">
+    <label description="IncludeTeams" languagecode="1033" />
+  </displayname>
+  <introducedversion>1.2.0.6</introducedversion>
+  <iscustomizable>1</iscustomizable>
+  <isrequired>0</isrequired>
+  <secretstore>0</secretstore>
+  <type>100000002</type>
+</environmentvariabledefinition>

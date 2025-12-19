@@ -1,0 +1,843 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_office365users_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr2de_O365Connector"
+        },
+        "api": {
+          "name": "shared_office365users"
+        }
+      },
+      "shared_office365_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr2de_OutlookConnector"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      },
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "tmrstr_sharedcommondataserviceforapps_b002b"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_teams_1": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "cr2de_TeamsConnector"
+        },
+        "api": {
+          "name": "shared_teams"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "mccia_Office365SEDB"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "IncludeTeams (cr2de_IncludeTeams)": {
+          "defaultValue": true,
+          "type": "Bool",
+          "metadata": {
+            "schemaName": "cr2de_IncludeTeams"
+          }
+        },
+        "IncludeOutlook (cr2de_IncludeOutlook)": {
+          "defaultValue": true,
+          "type": "Bool",
+          "metadata": {
+            "schemaName": "cr2de_IncludeOutlook"
+          }
+        },
+        "ScheduleTimeUTC (cr2de_ScheduleTimeUTC)": {
+          "type": "String",
+          "metadata": {
+            "schemaName": "cr2de_ScheduleTimeUTC"
+          }
+        }
+      },
+      "triggers": {
+        "Recurrence_Daily_5pm": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "startTime": "@parameters('ScheduleTimeUTC (cr2de_ScheduleTimeUTC)')"
+          },
+          "evaluatedRecurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "startTime": "2025-10-10T21:00:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "decef66f-ed15-47e1-ab32-1b8e50156e47"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "Initialize_str_EmailDigest": {
+          "runAfter": {
+            "Initialize_str_TeamsDigest": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "143b5c7d-5099-42f5-8e06-a679ec33401d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "str_EmailDigest",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Initialize_str_TeamsDigest": {
+          "runAfter": {
+            "Initialize_str_MyEmail": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "13f12878-2518-4331-8628-a508bbd6dc4a"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "str_TeamsDigest",
+                "type": "string"
+              }
+            ]
+          }
+        },
+        "Get_my_profile_(V2)": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "c56e5ef7-a889-4d71-9c62-ccc46eddd4b9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_office365users_1",
+              "operationId": "MyProfile_V2",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365users"
+            },
+            "parameters": {},
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Initialize_str_MyEmail": {
+          "runAfter": {
+            "Get_my_profile_(V2)": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "de4d7f5f-0db3-46c5-b24b-be904ab70d6d"
+          },
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "str_MyEmail",
+                "type": "string",
+                "value": "@outputs('Get_my_profile_(V2)')?['body/mail']"
+              }
+            ]
+          }
+        },
+        "IncludeOutlook_ENV_Variable_Check": {
+          "actions": {
+            "Try_Email_Digest": {
+              "actions": {
+                "Apply_to_Each_Email": {
+                  "foreach": "@outputs('Get_Recent_Emails')?['body/value']",
+                  "actions": {
+                    "Append_to_strEmailDigest": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "e03114c0-c480-4707-b614-aeee4a7b89b7"
+                      },
+                      "type": "AppendToStringVariable",
+                      "inputs": {
+                        "name": "str_EmailDigest",
+                        "value": "From: @{items('Apply_to_Each_Email')?['from']}\nReceived: @{items('Apply_to_Each_Email')?['receivedDateTime']}\nSubject: @{items('Apply_to_Each_Email')?['subject']}\nBody: @{items('Apply_to_Each_Email')?['bodyPreview']}"
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Get_Recent_Emails": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "ac8f3527-81cf-4cb3-a9bc-a1d968ac1eab"
+                  },
+                  "type": "Foreach",
+                  "runtimeConfiguration": {
+                    "concurrency": {
+                      "repetitions": 45
+                    }
+                  }
+                },
+                "Get_Recent_Emails": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "fe994b75-43e1-49b5-a949-b9f1c6fa39a5"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_office365_1",
+                      "operationId": "GetEmailsV3",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                    },
+                    "parameters": {
+                      "folderPath": "Inbox",
+                      "fetchOnlyUnread": false,
+                      "includeAttachments": false,
+                      "searchQuery": "received>=@{formatDateTime(\n  addDays(utcNow(), -1),\n  'M/d/yyyy'\n)}",
+                      "top": 1000,
+                      "importance": "Any",
+                      "fetchOnlyWithAttachment": false
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Summarize_Emails": {
+                  "runAfter": {
+                    "Apply_to_Each_Email": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "19c7f18e-fadc-4a53-b254-94cc4af9cead",
+                    "flowSystemMetadata": {
+                      "portalOperationId": "aibuilderpredict_customprompt",
+                      "portalOperationGroup": "aibuilder",
+                      "portalOperationApiDisplayNameOverride": "AI Builder",
+                      "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                      "portalOperationBrandColorOverride": "#0A76C4",
+                      "portalOperationApiTierOverride": "Standard"
+                    }
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "aibuilderpredict_customprompt",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "recordId": "0b27a3aa-abce-4c4d-bcd1-b24b35b2c953",
+                      "item/requestv2/Text_20input": "@variables('str_EmailDigest')"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "fff2e3a5-ac11-44d2-9221-ffc55f621a4e"
+              },
+              "type": "Scope"
+            }
+          },
+          "runAfter": {
+            "Initialize_str_EmailDigest": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@parameters('IncludeOutlook (cr2de_IncludeOutlook)')",
+              "Yes"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "e7013369-65bb-4598-9029-14df2e88c606"
+          },
+          "type": "If"
+        },
+        "IncludeTeams_ENV_Variable_Check": {
+          "actions": {
+            "Try_Teams_Digest": {
+              "actions": {
+                "Get_Recent_Chats": {
+                  "runAfter": {},
+                  "metadata": {
+                    "operationMetadataId": "3eb30718-ce4c-4ec4-9cf1-f924a1c0e40d"
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_teams_1",
+                      "operationId": "HttpRequest",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+                    },
+                    "parameters": {
+                      "Uri": "https://graph.microsoft.com/v1.0/me/chats?$select=id,topic,lastUpdatedDateTime",
+                      "Method": "GET",
+                      "ContentType": "application/json"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Parse_Recent_Chats": {
+                  "runAfter": {
+                    "Get_Recent_Chats": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "a5c3ffa6-165f-4a2b-b4b1-5b025d8ce875"
+                  },
+                  "type": "ParseJson",
+                  "inputs": {
+                    "content": "@body('Get_Recent_Chats')",
+                    "schema": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string"
+                              },
+                              "topic": {
+                                "type": [
+                                  "string",
+                                  "null"
+                                ]
+                              },
+                              "lastUpdatedDateTime": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Apply_to_Each_Chat": {
+                  "foreach": "@body('Parse_Recent_Chats')?['value']",
+                  "actions": {
+                    "Get_Messages_Per_Chat": {
+                      "runAfter": {},
+                      "metadata": {
+                        "operationMetadataId": "f9c00764-2443-4490-9481-b8bc5250ce4b"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "host": {
+                          "connectionName": "shared_teams_1",
+                          "operationId": "HttpRequest",
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_teams"
+                        },
+                        "parameters": {
+                          "Uri": "https://graph.microsoft.com/v1.0/me/chats/@{items('Apply_to_Each_Chat')?['id']}/messages?$top=50",
+                          "Method": "GET",
+                          "ContentType": "application/json"
+                        },
+                        "authentication": "@parameters('$authentication')"
+                      }
+                    },
+                    "Try_This_Chat": {
+                      "actions": {
+                        "Parse_Chat": {
+                          "runAfter": {},
+                          "metadata": {
+                            "operationMetadataId": "d1e432bc-4d17-4ba0-9cb3-7b9b19734f0d"
+                          },
+                          "type": "ParseJson",
+                          "inputs": {
+                            "content": "@body('Get_Messages_Per_Chat')",
+                            "schema": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "string"
+                                      },
+                                      "chatId": {
+                                        "type": "string"
+                                      },
+                                      "createdDateTime": {
+                                        "type": "string"
+                                      },
+                                      "lastModifiedDateTime": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ]
+                                      },
+                                      "messageType": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ]
+                                      },
+                                      "importance": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ]
+                                      },
+                                      "locale": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ]
+                                      },
+                                      "subject": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ]
+                                      },
+                                      "summary": {
+                                        "type": [
+                                          "string",
+                                          "null"
+                                        ]
+                                      },
+                                      "body": {
+                                        "type": "object",
+                                        "properties": {
+                                          "contentType": {
+                                            "type": [
+                                              "string",
+                                              "null"
+                                            ]
+                                          },
+                                          "content": {
+                                            "type": [
+                                              "string",
+                                              "null"
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      "from": {
+                                        "type": [
+                                          "object",
+                                          "null"
+                                        ],
+                                        "properties": {
+                                          "user": {
+                                            "type": [
+                                              "object",
+                                              "null"
+                                            ],
+                                            "properties": {
+                                              "id": {
+                                                "type": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              },
+                                              "displayName": {
+                                                "type": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              },
+                                              "userIdentityType": {
+                                                "type": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              },
+                                              "tenantId": {
+                                                "type": [
+                                                  "string",
+                                                  "null"
+                                                ]
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "eventDetail": {
+                                        "type": [
+                                          "object",
+                                          "null"
+                                        ],
+                                        "properties": {
+                                          "odata_type": {
+                                            "type": [
+                                              "string",
+                                              "null"
+                                            ]
+                                          },
+                                          "chatDisplayName": {
+                                            "type": [
+                                              "string",
+                                              "null"
+                                            ]
+                                          },
+                                          "members": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "id": {
+                                                  "type": [
+                                                    "string",
+                                                    "null"
+                                                  ]
+                                                },
+                                                "displayName": {
+                                                  "type": [
+                                                    "string",
+                                                    "null"
+                                                  ]
+                                                },
+                                                "userIdentityType": {
+                                                  "type": [
+                                                    "string",
+                                                    "null"
+                                                  ]
+                                                },
+                                                "tenantId": {
+                                                  "type": [
+                                                    "string",
+                                                    "null"
+                                                  ]
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "id",
+                                      "chatId",
+                                      "createdDateTime",
+                                      "body"
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Filter_Chats": {
+                          "runAfter": {
+                            "Parse_Chat": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "c7539319-b5ed-4e16-a360-f355ed4dd8b3"
+                          },
+                          "type": "Query",
+                          "inputs": {
+                            "from": "@body('Parse_Chat')?['value']",
+                            "where": "@greaterOrEquals(item()?['createdDateTime'], formatDateTime(addDays(utcNow(), -1), 'yyyy-MM-ddTHH:mm:ssZ'))"
+                          }
+                        },
+                        "Select_Chat_Content": {
+                          "runAfter": {
+                            "Filter_Chats": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "aa638a2b-3e80-45f9-b57b-4cbdd89c7f71"
+                          },
+                          "type": "Select",
+                          "inputs": {
+                            "from": "@body('Filter_Chats')",
+                            "select": {
+                              "ChatID": "@item()?['chatId']",
+                              "ChatDisplayName": "@item()?['eventDetail']?['chatDisplayName']",
+                              "SenderID": "@item()?['from']?['user']?['id']",
+                              "SenderName": "@item()?['from']?['user']?['displayName']",
+                              "MessageType": "@item()?['messageType']",
+                              "CreatedDateTime": "@item()?['createdDateTime']",
+                              "BodyContent": "@item()?['body']?['content']",
+                              "EventType": "@item()?['eventDetail']?['odata_type']"
+                            }
+                          }
+                        },
+                        "Join_Each_Chat": {
+                          "runAfter": {
+                            "Select_Chat_Content": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "23813e2f-d511-4d3b-8f3c-fc97e5b19d20"
+                          },
+                          "type": "Compose",
+                          "inputs": "@concat(\n  '\\n\\n[Chat: ',\n  first(body('Select_Chat_Content'))?['ChatDisplayName'],\n  ']\\n',\n  join(body('Select_Chat_Content'), '\\n')\n)"
+                        },
+                        "Append_to_strTeamsDigest": {
+                          "runAfter": {
+                            "Join_Each_Chat": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "7713a0a2-07e9-41f0-88a8-57670edb3eab"
+                          },
+                          "type": "AppendToStringVariable",
+                          "inputs": {
+                            "name": "str_TeamsDigest",
+                            "value": "@outputs('Join_Each_Chat')"
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Get_Messages_Per_Chat": [
+                          "Succeeded"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "15f6e5b6-c8ef-4343-aece-668934571c95"
+                      },
+                      "type": "Scope"
+                    },
+                    "Catch_This_Chat": {
+                      "actions": {},
+                      "runAfter": {
+                        "Try_This_Chat": [
+                          "Succeeded",
+                          "Failed",
+                          "Skipped",
+                          "TimedOut"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "ecf72e86-72ec-4210-8f2b-92274e8ae702"
+                      },
+                      "type": "Scope"
+                    }
+                  },
+                  "runAfter": {
+                    "Parse_Recent_Chats": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "7295d750-6a54-44b3-92c9-4d064551a2ef"
+                  },
+                  "type": "Foreach",
+                  "runtimeConfiguration": {
+                    "concurrency": {
+                      "repetitions": 50
+                    }
+                  }
+                },
+                "Summarize_Teams": {
+                  "runAfter": {
+                    "Apply_to_Each_Chat": [
+                      "Succeeded"
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "22facfdc-cd2a-4e7b-a1f8-b646f6b9051c",
+                    "flowSystemMetadata": {
+                      "portalOperationId": "aibuilderpredict_customprompt",
+                      "portalOperationGroup": "aibuilder",
+                      "portalOperationApiDisplayNameOverride": "AI Builder",
+                      "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                      "portalOperationBrandColorOverride": "#0A76C4",
+                      "portalOperationApiTierOverride": "Standard"
+                    }
+                  },
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "aibuilderpredict_customprompt",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "recordId": "31eb3033-1cfb-4d04-9b0c-9300271e64ab",
+                      "item/requestv2/Text_20input": "@variables('str_TeamsDigest')"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "89857e1a-343b-4baf-a37c-0cf10e3911fc"
+              },
+              "type": "Scope"
+            }
+          },
+          "runAfter": {
+            "Initialize_str_EmailDigest": [
+              "Succeeded"
+            ]
+          },
+          "expression": {
+            "equals": [
+              "@parameters('IncludeTeams (cr2de_IncludeTeams)')",
+              "Yes"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "2c3e74e5-1957-4f59-bb77-c844cc08d764"
+          },
+          "type": "If"
+        },
+        "Fail_Catch": {
+          "actions": {
+            "Error_Email_": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "15568afc-8721-477b-81cd-0b20f78d1ba6"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365",
+                  "operationId": "SendEmailV2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                },
+                "parameters": {
+                  "emailMessage/To": "@variables('str_MyEmail')",
+                  "emailMessage/Subject": "GetEmailsSched Error",
+                  "emailMessage/Body": "<html>\n  <body style=\"font-family:Segoe UI,Arial; font-size:13px; line-height:1.6; color:#000;\">\n    <p><strong>Automation:</strong> GetEmailsSched (Daily Digest)</p>\n    <p><strong>Status:</strong> ❌ Failed</p>\n    <p><strong>Failure Point:</strong> \n      <em>\n        @{coalesce(triggerOutputs()?['body/summary'], 'Unknown step')}\n      </em>\n    </p>\n    <p><strong>Flow Run ID:</strong> @{workflow()?['run']['name']}</p>\n    <p><strong>Timestamp:</strong> @{utcNow()}</p>\n    <br>\n    <p>The Daily Digest summary flow encountered an error and did not complete successfully. \n       Please review the run history in Power Automate for additional details.</p>\n    <br>\n    <p><strong>Next Steps:</strong></p>\n    <ul>\n      <li>Verify connection references for Outlook, AI Builder, or HTML Compose actions.</li>\n      <li>Check “Summarize All Content” and “Apply HTML Styling” outputs for malformed data or empty results.</li>\n      <li>Restart the flow manually if required.</li>\n    </ul>\n    <br>\n    <p style=\"color:#666;\">This message was automatically generated by the Power Automate monitoring workflow.</p>\n  </body>\n</html>",
+                  "emailMessage/Importance": "Normal"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "Try_Daily_Digest": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "0e9a9fff-e907-4d67-8757-1b7ffe00bff7"
+          },
+          "type": "Scope"
+        },
+        "Try_Daily_Digest": {
+          "actions": {
+            "Summarize_All_Content": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "bc486d70-f3c1-4dee-84a3-82a79daf87c8",
+                "flowSystemMetadata": {
+                  "portalOperationId": "aibuilderpredict_customprompt",
+                  "portalOperationGroup": "aibuilder",
+                  "portalOperationApiDisplayNameOverride": "AI Builder",
+                  "portalOperationIconOverride": "https://content.powerapps.com/resource/makerx/static/pauto/images/designeroperations/aiBuilderNew.51dbdb6b.png",
+                  "portalOperationBrandColorOverride": "#0A76C4",
+                  "portalOperationApiTierOverride": "Standard"
+                }
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "aibuilderpredict_customprompt",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "recordId": "0e8e65eb-9dcc-4649-bb81-0f9bbe9448ca",
+                  "item/requestv2/Text_20input": "@outputs('Summarize_Teams')?['body/responsev2/predictionOutput/text']",
+                  "item/requestv2/Text_20input_201": "@outputs('Summarize_Emails')?['body/responsev2/predictionOutput/text']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Apply_HTML_Styling": {
+              "runAfter": {
+                "Summarize_All_Content": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "3935623e-f537-4c4b-b3ba-eaa272575412"
+              },
+              "type": "Compose",
+              "inputs": "@concat(\n  '<html><body style=\"font-family:Segoe UI,Arial; font-size:13px; line-height:1.5; color:#000;\">',\n  '<div style=\"margin-bottom:8px;\">',\n  replace(\n    replace(\n      replace(\n        replace(\n          replace(\n            replace(\n              replace(\n                replace(\n                  replace(\n                    replace(\n                      replace(\n                        replace(\n                          outputs('Summarize_All_Content')?['body/responsev2/predictionOutput/text'],\n                          'Overview of the Day', '</div><h3 style=\"margin-top:16px;margin-bottom:4px;\">Overview of the Day</h3><ul style=\"margin-top:0;\">'\n                        ),\n                        'Major Actions and Decisions', '</ul><h3 style=\"margin-top:16px;margin-bottom:4px;\">Major Actions and Decisions</h3><ul style=\"margin-top:0;\">'\n                      ),\n                      'System or Technical Notes', '</ul><h3 style=\"margin-top:16px;margin-bottom:4px;\">System or Technical Notes</h3><ul style=\"margin-top:0;\">'\n                    ),\n                    'Collaboration and Communications', '</ul><h3 style=\"margin-top:16px;margin-bottom:4px;\">Collaboration and Communications</h3><ul style=\"margin-top:0;\">'\n                  ),\n                  'Awareness and Announcements', '</ul><h3 style=\"margin-top:16px;margin-bottom:4px;\">Awareness and Announcements</h3><ul style=\"margin-top:0;\">'\n                ),\n                'Stand-Up for Tomorrow Morning', '</ul><h3 style=\"margin-top:16px;margin-bottom:4px;\">Stand-Up for Tomorrow Morning</h3><ul style=\"margin-top:0;\">'\n              ),\n              'Urgent:', ''\n            ),\n            'High Priority:', ''\n          ),\n          'General:', ''\n        ),\n        '• ', '</li><li>'\n      ),\n      '- ', '</li><li>'\n    ),\n    '\\r\\n', ''\n  ),\n  '\\n', '',\n  '</li></ul></div></body></html>'\n)"
+            },
+            "Send_Daily_Digest": {
+              "runAfter": {
+                "Apply_HTML_Styling": [
+                  "Succeeded"
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "cc76a9a1-c1d2-4206-a5c5-31977d09a688"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_office365_1",
+                  "operationId": "SendEmailV2",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365"
+                },
+                "parameters": {
+                  "emailMessage/To": "@variables('str_MyEmail')",
+                  "emailMessage/Subject": "Daily Digest",
+                  "emailMessage/Body": "@outputs('Apply_HTML_Styling')",
+                  "emailMessage/Importance": "High"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "IncludeTeams_ENV_Variable_Check": [
+              "Succeeded"
+            ],
+            "IncludeOutlook_ENV_Variable_Check": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "9e6c9854-c17e-4c07-91c3-7aa51a1dbf5f"
+          },
+          "type": "Scope"
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
